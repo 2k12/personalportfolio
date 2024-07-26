@@ -1,0 +1,35 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCE = [
+  {
+    date: "Septiembre 2023 - Actualidad",
+    job: "Desarrollador Full Stack",
+    title: "Easy Ecommerce",
+    description:
+      "Easy Ecommerce es una plataforma completa de comercio electrónico que ofrece a los usuarios la capacidad de crear, administrar y hacer crecer tiendas en línea de manera fácil y eficiente. Con una interfaz intuitiva y potentes herramientas integradas, Easy Ecommerce permite a los usuarios personalizar su tienda, agregar productos, gestionar inventarios y procesar pagos de manera sencilla.",
+  }
+  // ,
+  // {
+  //   date: "Diciembre 2023",
+  //   title: "Plantz",
+  //   description:
+  //     "Sistema de Gestión de especies de plantas endemicas de la Provincia de Imbabura.",
+  // },
+  // {
+  //   date: "Junio 2023",
+  //   title: "Plantz",
+  //   description:
+  //     "Sistema de Gestión de especies de plantas endemicas de la Provincia de Imbabura.",
+  // },
+];
+---
+
+<ol class="relative border-s border-gray-200 ml-4">
+  {EXPERIENCE.map((experience) => 
+    <li class="mb-10 ms-4">
+        <ExperienceItem {...experience}/>
+    </li>
+  )}
+ 
+</ol>

@@ -1,0 +1,124 @@
+---
+// Definición de habilidades directamente en este archivo
+const SKILLS = [
+  {
+    name: "React",
+    keywords: ["Desarrollo Web", "Frontend"],
+    background: "border-[#61DAFB] bg-[#61DAFB]/10",
+  },
+  {
+    name: "Flutter",
+    keywords: ["Desarrollo Web", "Frontend"],
+    background: "border-[#02569B] bg-[#02569B]/10",
+  },
+  {
+    name: "Astro",
+    keywords: ["Desarrollo Web", "Frontend"],
+    background: "border-[#805AD5] bg-[#805AD5]/10",
+  },
+  {
+    name: "Laravel",
+    keywords: ["Desarrollo Web", "Backend"],
+    background: "border-[#F05340] bg-[#F05340]/10",
+  },
+  {
+    name: "Express",
+    keywords: ["Desarrollo Web", "Backend"],
+    background: "border-[#44CC11] bg-[#44CC11]/10",
+  },
+  {
+    name: "Node JS",
+    keywords: ["Desarrollo Web", "Backend"],
+    background: "border-[#68A063] bg-[#68A063]/10",
+  },
+  {
+    name : "PHP",
+    keywords:["Desarrollo Web", "Frontend"],
+    background: "text-[#7377AD]"
+  },
+  {
+    name: "Java",
+    keywords: ["Desarrollo Web", "Backend"],
+    background: "border-[#8B008B] bg-[#8B008B]/10",
+  },
+  {
+    name: "JavaScript",
+    keywords: ["Desarrollo Web", "Frontend"],
+    background: "border-[#F7DF1E] bg-[#F7DF1E]/10",
+  },
+  {
+    name: "C#",
+    keywords: ["Desarrollo Web", "Backend"],
+    background: "border-[#002050] bg-[#002050]/10",
+  },
+  {
+    name: "Python",
+    keywords: ["Desarrollo Web", "Backend"],
+    background: "border-[#FFD43B] bg-[#FFD43B]/10",
+  },
+  {
+    name: "GitHub",
+    keywords: ["Desarrollo Web", "Colaboración"],
+    background: "border-[#24292E] bg-[#24292E]/10",
+  },
+  {
+    name: "Jest",
+    keywords: ["Desarrollo Web", "Testing"],
+    background: "border-[#F04D7C] bg-[#F04D7C]/10",
+  },
+  {
+    name: "Trello",
+    keywords: ["Gestión de Proyectos"],
+    background: "border-[#0079BF] bg-[#0079BF]/10",
+  },
+  {
+    name: "Dart",
+    keywords: ["Desarrollo Web", "Frontend"],
+    background: "border-[#0175C2] bg-[#0175C2]/10",
+  },
+  {
+    name: "TensorFlow",
+    keywords: ["Desarrollo Web", "Inteligencia Artificial"],
+    background: "border-[#FF6F00] bg-[#FF6F00]/10",
+  },
+  {
+    name: "SQL",
+    keywords: ["Bases de Datos", "SQL"],
+    background: "border-[#800080] bg-[#800080]/10",
+  },
+  {
+    name: "MySQL",
+    keywords: ["Bases de Datos", "MySQL"],
+    background: "border-[#0000FF] bg-[#0000FF]/10",
+  },
+  {
+    name: "PostgreSQL",
+    keywords: ["Bases de Datos", "PostgreSQL"],
+    background: "border-[#000080] bg-[#000080]/10",
+  },
+  {
+    name: "MongoDB",
+    keywords: ["Bases de Datos", "NoSQL"],
+    background: "border-[#008000] bg-[#008000]/10",
+  },
+  {
+    name: "SQLite",
+    keywords: ["Bases de Datos", "SQLite"],
+    background: "border-[#808080] bg-[#808080]/10 ",
+  },
+  // Agrega más habilidades según necesites
+];
+
+---
+<div class="flex-container  h-24 py-6 ">
+  <div class="animate-marquee">
+    {
+      SKILLS.map(skill => (
+        <div class={`skill-box rounded  border border-solid ${skill.background}`}>
+          <span class="skill-name">{skill.name}</span>
+        </div>
+      ))
+    }
+  </div>
+  
+</div>

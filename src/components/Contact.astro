@@ -1,0 +1,53 @@
+---
+import { handleSubmit } from "../handlers/contactForm.js";
+---
+
+  <form id="contactForm" class="max-w-md mx-auto mt-8" @onsubmit={handleSubmit}>
+    <div class="mb-4">
+      <label for="name" class="block text-white/60">Nombre</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-input mt-1 block w-full border border-solid border-white text-white bg-gray-800 rounded h-12 px-2"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="email" class="block text-white/60">Correo electrónico</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="form-input mt-1 block w-full border border-solid border-white text-white bg-gray-800 rounded h-12 px-2"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="subject" class="block text-white/60">Asunto</label>
+      <input
+        type="text"
+        id="subject"
+        name="subject"
+        class="form-input mt-1 block w-full border border-solid border-white text-white bg-gray-800 rounded h-12 px-2"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label for="message" class="block text-white/60">Mensaje</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        class="form-textarea mt-1 block w-full border border-solid border-white rounded h-16 px-2 text-white bg-gray-800"
+        required></textarea>
+    </div>
+    <div class="mb-4 justify-center items-center">
+      <button
+        type="submit"
+        class="rounded-lg inline-flex items-center text-sm font-medium text-gray-900 bg-white border-gray-200 hover:bg-gray-200 hover:text-violet-500 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-violet-500 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700rounded-lg px-5 py-2.5 text-center me-2 mb-2 w-full justify-center mt-2 "
+        >Enviar Mensaje</button
+      >
+    </div>
+  </form>
+</div>
