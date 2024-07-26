@@ -66,27 +66,26 @@ const { description, title } = Astro.props;
     /* min-height: 100vh; */
   }
   @keyframes marquee {
-  from {
-    transform: translateX(100%);
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
   }
-  to {
-    transform: translateX(-100%);
+
+  /* Aplica la animación al contenedor del marquee */
+  .animate-marquee {
+    display: flex;
+    animation: marquee 20s linear infinite;
   }
-}
 
- /* Aplica la animación al contenedor del marquee */
-.animate-marquee {
-  display: flex;
-  animation: marquee 20s linear infinite;
-}
-
-/* Asegúrate de que el contenedor del marquee o su parent tiene el overflow oculto */
-.flex-container {
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative; /* Importante para el efecto de movimiento */
-}
-
+  /* Asegúrate de que el contenedor del marquee o su parent tiene el overflow oculto */
+  .flex-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative; /* Importante para el efecto de movimiento */
+  }
 
   .skill-box {
     display: inline-block;
@@ -102,9 +101,18 @@ const { description, title } = Astro.props;
     font-weight: bold;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none;
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
   }
-}
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+    }
+  }
 </style>

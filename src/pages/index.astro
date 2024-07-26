@@ -25,7 +25,7 @@ import Contact from "../components/Contact.astro";
   description="Hola! Soy Joan Pastillo, un apasionado desarrollador full stack con +5 meses de experiencia creando soluciones digitales robustas y escalables. Con un fuerte enfoque en la calidad y la innovación, me especializo en llevar ideas desde el concepto hasta la implementación final, asegurando que cada proyecto no solo cumpla, sino que supere las expectativas."
 >
   <main class="px-10">
-    <SectionContainer class="py-36 pb-24" id="top">
+    <SectionContainer class="py-20 pb-24" id="top">
       <div class="flex">
         <img
           class="rounded-full w-12 h-12"
@@ -50,31 +50,28 @@ import Contact from "../components/Contact.astro";
         </h1>
       </div>
 
-      <h2 class="text-xl lg:text-2xl opacity-80 text-wrap max-w-[700px] text-white dark:text-white">
+      <h2
+        class="text-xl lg:text-2xl opacity-80 text-wrap max-w-[700px] text-white dark:text-white"
+      >
         <div class="flex items-center space-x-2">
-          <ExperienceI class="size-5" />
-          <span>
-            Estudiante de Ingeniería de Software.
-          </span>
+          <!-- <ExperienceI class="size-5" /> -->
+
+          <span> - Estudiante de Ingeniería de Software. </span>
         </div>
         <div class="flex items-center space-x-2">
-            <ExperienceI class="size-5" />
-          <span>
-            Desarrollador Full Stack en EasyEcommerce.
-          </span>
+          <!-- <ExperienceI class="size-5" /> -->
+          <span> - Desarrollador Full Stack en EasyEcommerce. </span>
         </div>
         <div class="flex items-center space-x-2">
-            <ExperienceI class="size-5" />
-            <span>
-            CEO Oson
-          </span>
+          <!-- <ExperienceI class="size-5" /> -->
+          <span> - CEO Oson </span>
         </div>
-        <br>
+        <br />
         Desarrollador
         <span class="text-yellow-300">de</span>
         <span class="text-blue-500"> Imbabura, </span>
-        <span class="text-red-500">Ecuador</span> me especializo en Desarrollo Web, Desarrollo Movil
-        y Administración de Bases de Datos.
+        <span class="text-red-500">Ecuador</span> me especializo en Desarrollo Web,
+        Desarrollo Movil y Administración de Bases de Datos.
       </h2>
       <nav class="flex gap-4 mt-5 flex-wrap text-white dark:text-white">
         <SocialPill href="https://github.com/2k12">
@@ -93,29 +90,37 @@ import Contact from "../components/Contact.astro";
         </SocialPill>
       </nav>
     </SectionContainer>
-    <SectionContainer id="experiencia">
-      <h2 class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-white dark:text-white">
+    <SectionContainer id="experiencia" class="pt-10">
+      <h2
+        class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-white dark:text-white"
+      >
         <Luggage class="size-9" />
         Experiencia Laboral
       </h2>
       <Experience />
     </SectionContainer>
-    <SectionContainer id="proyectos">
-      <h2 class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-white dark:text-white">
+    <SectionContainer id="proyectos" class="pt-10">
+      <h2
+        class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-white dark:text-white"
+      >
         <ProjectsIcon class="size-9" />
         Proyectos
       </h2>
       <Projects />
     </SectionContainer>
-    <SectionContainer id="habilidades">
-      <h2 class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-white dark:text-white">
+    <SectionContainer id="habilidades" class="pt-10">
+      <h2
+        class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-white dark:text-white"
+      >
         <SkillsIcon class="size-9" />
         Habilidades
       </h2>
       <Skills />
     </SectionContainer>
-    <SectionContainer id="contacto">
-      <h2 class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-white dark:text-white">
+    <SectionContainer id="contacto" class="pt-10">
+      <h2
+        class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-white dark:text-white"
+      >
         <ContactIcon class="size-9" />
         Contacto
       </h2>
