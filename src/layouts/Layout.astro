@@ -31,8 +31,11 @@ const { description, title } = Astro.props;
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script> -->
+
     <script type="module">
       import { handleSubmit } from "/src/handlers/contactForm.js";
+      import Atropos from "https://cdn.jsdelivr.net/npm/atropos@2/atropos.min.mjs";
 
       document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("contactForm");
@@ -40,11 +43,31 @@ const { description, title } = Astro.props;
           form.addEventListener("submit", handleSubmit);
         }
       });
+
+      const myAtropos = Atropos({
+        el: ".my-atropos",
+        activeOffset: 90,
+        shadowScale: 1.05,
+        shadow: true,
+        shadowOffset: 50,
+        // shadowScale: 4,
+        highlight: true,
+
+        onEnter() {
+          // console.log("Enter");
+        },
+        onLeave() {
+          // console.log("Leave");
+        },
+        onRotate(x, y) {
+          // console.log("Rotate", x, y);
+        },
+      });
     </script>
   </head>
   <body>
     <div
-      class="fixed top-0 z-[-2] h-screen w-screen bg-zinc-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+      class="fixed top-0 z-[-2] h-screen w-screen bg-zinc-950 "
     >
     </div>
     <Header />

@@ -15,6 +15,7 @@
     "@emailjs/browser": "^4.4.1",
     "@fontsource-variable/onest": "^5.0.3",
     "astro": "^4.5.9",
+    "atropos": "^2.0.2",
     "pixi.js": "^8.0.4",
     "sweetalert2": "^11.12.3",
     "tailwindcss": "^3.4.1",

@@ -1,0 +1,44 @@
+---
+const sceneUrl = "";
+---
+
+<style>
+  .spline-container {
+    width: 100%;
+    height: 60vh; /* Ajusta la altura según sea necesario */
+    position: relative;
+    /* overflow: hidden; */
+  }
+
+  iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    /* opacity: 0.5; */
+  }
+
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Ajusta el color según el fondo */
+    font-size: 2rem; /* Ajusta el tamaño de fuente según sea necesario */
+    text-align: center;
+    z-index: 1; /* Asegúrate de que el texto esté sobre el iframe */
+  }
+</style>
+
+<div class="spline-container">
+  <iframe
+    src="https://my.spline.design/clonercubesimplecopy-ee350d5d17459aae92e33b696cf4dbd0/"
+     ></iframe>
+  <div class="text-overlay">
+    <h1
+      class="lg:mt-20 mb-15 md:text-4xl text-6xl lg:text-8xl font-bold flex flex-row gap-x-4 pb-8 lg:pb-10 mt-15 ml-3 text-gradient"
+      data-atropos-offset="5"
+    >
+      Hola, soy Joan
+    </h1>
+  </div>
+</div>
