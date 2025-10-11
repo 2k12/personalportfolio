@@ -1,5 +1,6 @@
 ---
 import ReactIcon from "../icons/projectsicons/React.astro";
+import JakartaEE from "../icons/projectsicons/JakartaEE.astro";
 import ExpressIcon from "../icons/projectsicons/Express.astro";
 import AwsIcon from "../icons/projectsicons/Aws.astro";
 import TailwindIcon from "../icons/projectsicons/Tailwind.astro";
@@ -7,66 +8,87 @@ import TailwindIcon from "../icons/projectsicons/Tailwind.astro";
 const TAGS = {
   REACT: {
     name: "React",
-    class: "bg-black text-white border border-gray-50 hover:bg-gray-500",
+    class: "border-blue-400 text-blue-400 hover:bg-blue-500 hover:text-white",
     icon: ReactIcon,
   },
   EXPRESS: {
     name: "Express",
-    class: "bg-black text-white border border-gray-50 hover:bg-gray-500",
+    class: "border-green-400 text-green-400 hover:bg-green-500 hover:text-white",
     icon: ExpressIcon,
   },
   AWS: {
     name: "AWS",
-    class: "bg-black text-white border border-gray-50 hover:bg-gray-500",
+    class: "border-yellow-400 text-yellow-400 hover:bg-yellow-500 hover:text-white",
     icon: AwsIcon,
   },
   TAILWIND: {
     name: "Tailwind",
-    class: "bg-black text-white border border-gray-50 hover:bg-gray-500",
+    class: "border-cyan-400 text-cyan-400 hover:bg-cyan-500 hover:text-white",
     icon: TailwindIcon,
   },
+  JAKARTAEE: {
+    name: "Jakarta EE",
+    class: "border-orange-400 text-orange-400 hover:bg-orange-500 hover:text-white",
+    icon: JakartaEE,
+  },
 };
+
 const PROJECTS = [
   {
     title: "Plantz",
-    description:
-      " Aplicación Web de Gestión de Especies del Mundo Plantae segun su Taxonomía.",
+    description: "Aplicación Web de Gestión de Especies del Mundo Plantae según su Taxonomía.",
     link: "#",
     github: "https://github.com/2k12/Plantz",
     image: "/projects/plantz.webp",
     tags: [TAGS.REACT, TAGS.EXPRESS, TAGS.AWS, TAGS.TAILWIND],
   },
+  {
+    title: "UTN-Coin",
+    description: "Plataforma tecnológica para promover la participación estudiantil mediante una Moneda Virtual.",
+    link: "#",
+    // github: "https://github.com/2k12/Plantz",
+    image: "/projects/utn_coin.png",
+    tags: [TAGS.JAKARTAEE],
+  },
 ];
 ---
 
-<div>
-  {
-    PROJECTS.map(({ image, title, description, tags }) => (
-      <article>
-        <img
-          class="rounded-lg w-4/5 shadow-2xl shadow-white/10 mb-5 "
-          src={image}
-          alt={`Captura de Pantalla del Proyecto ${image}`}
-        />
-        <h3 class="text-2xl font-semibold text-blue-300 mb-1">{title}</h3>
-        <p class="text-lg mb-4  w-3/4 text-pretty text-white dark:text-white">
-          {description}
-        </p>
-        <div class="overflow-x-auto  scrollbar-hidden">
-          <ul class="flex gap-x-4 flex-row mb-5 ">
-            {tags.map((tag) => (
-              <li>
-                <span
-                  class={`flex gap-x-2 rounded-full text-xs  py-1 px-2 ${tag.class}`}
-                >
-                  <tag.icon class="size-4" />
-                  {tag.name}
-                </span>
-              </li>
-            ))}
-          </ul>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  {PROJECTS.map(({ image, title, description, tags, github, link }) => (
+    <article class="bg-white/5 rounded-2xl shadow-lg shadow-black/20 overflow-hidden backdrop-blur-md border border-white/10 transition-all hover:scale-[1.01] hover:shadow-xl duration-300">
+      <img
+        class="w-full h-48 object-cover"
+        src={image}
+        alt={`Captura de ${title}`}
+        loading="lazy"
+      />
+      <div class="p-5">
+        <h3 class="text-2xl font-bold text-white/80 mb-2">{title}</h3>
+        <p class="text-sm text-white/80 mb-4">{description}</p>
+        <ul class="flex flex-wrap gap-2 mb-4">
+          {tags.map((tag) => (
+            <li>
+              <span
+                class={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium shadow-sm transition-all duration-200 ${tag.class}`}
+              >
+                <tag.icon class="w-4 h-4" />
+                {tag.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex gap-4">
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              class="text-sm text-blue-400 underline hover:text-blue-300 transition"
+            >
+              GitHub
+            </a>
+          )}
         </div>
-      </article>
-    ))
-  }
+      </div>
+    </article>
+  ))}
 </div>

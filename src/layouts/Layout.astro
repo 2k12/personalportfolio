@@ -66,10 +66,7 @@ const { description, title } = Astro.props;
     </script>
   </head>
   <body>
-    <div
-      class="fixed top-0 z-[-2] h-screen w-screen bg-zinc-950 "
-    >
-    </div>
+    <div class="fixed top-0 z-[-2] h-screen w-screen bg-zinc-950"></div>
     <Header />
     <slot />
   </body>
@@ -89,11 +86,11 @@ const { description, title } = Astro.props;
     /* min-height: 100vh; */
   }
   @keyframes marquee {
-    from {
-      transform: translateX(100%);
+    0% {
+      transform: translateX(0%);
     }
-    to {
-      transform: translateX(-100%);
+    100% {
+      transform: translateX(-50%);
     }
   }
 
@@ -101,6 +98,7 @@ const { description, title } = Astro.props;
   .animate-marquee {
     display: flex;
     animation: marquee 20s linear infinite;
+    min-width: 200%;
   }
 
   /* Asegúrate de que el contenedor del marquee o su parent tiene el overflow oculto */

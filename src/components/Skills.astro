@@ -112,13 +112,17 @@ const SKILLS = [
 ---
 <div class="flex-container  h-24 py-6 ">
   <div class="animate-marquee">
-    {
-      SKILLS.map(skill => (
-        <div class={`skill-box rounded  border border-solid ${skill.background}`}>
-          <span class="skill-name">{skill.name}</span>
-        </div>
-      ))
-    }
+    {SKILLS.map(skill => (
+      <div class={`skill-box rounded border border-solid ${skill.background}`}>
+        <span class="skill-name">{skill.name}</span>
+      </div>
+    ))}
+    <!-- Segundo bloque idéntico para loop continuo -->
+    {SKILLS.map(skill => (
+      <div class={`skill-box rounded border border-solid ${skill.background}`}>
+        <span class="skill-name">{skill.name}</span>
+      </div>
+    ))}
   </div>
   
 </div>
