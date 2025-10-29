@@ -4,6 +4,7 @@ import JakartaEE from "../icons/projectsicons/JakartaEE.astro";
 import ExpressIcon from "../icons/projectsicons/Express.astro";
 import AwsIcon from "../icons/projectsicons/Aws.astro";
 import TailwindIcon from "../icons/projectsicons/Tailwind.astro";
+import AstroIcon from "../icons/projectsicons/Ast.astro";
 
 const TAGS = {
   REACT: {
@@ -34,6 +35,11 @@ const TAGS = {
       "border-orange-400 text-orange-400 hover:bg-orange-500 hover:text-white",
     icon: JakartaEE,
   },
+  ASTRO: {
+    name: "Astro",
+    class: "border-purple-400 text-purple-400 hover:bg-purple-500 hover:text-white",
+    icon: AstroIcon,
+  },
 };
 
 const GITHUB_ICON = `
@@ -59,6 +65,14 @@ const PROJECTS = [
     tags: [TAGS.REACT, TAGS.EXPRESS, TAGS.AWS, TAGS.TAILWIND],
   },
   {
+    title: "DeliBums",
+    description:
+      "DeliBums es una tienda web desarrollada con Astro y TailwindCSS, diseñada para ofrecer una experiencia moderna, rápida y visualmente atractiva en la presentación y venta de productos artesanales de chocolate.",
+    link: "https://delibums.netlify.app",
+    image: "/projects/delibums.png",
+    tags: [TAGS.ASTRO, TAGS.TAILWIND],
+  },
+  {
     title: "UTN-Coin",
     description:
       "Plataforma tecnológica para promover la participación estudiantil mediante una Moneda Virtual.",
@@ -67,7 +81,6 @@ const PROJECTS = [
     image: "/projects/utn_coin.png",
     tags: [TAGS.JAKARTAEE],
   },
-
 ];
 ---
 
