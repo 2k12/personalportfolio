@@ -1,0 +1,154 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+// 1. Importamos tu componente de proyectos
+import ProjectsGrid from "../components/Projects.astro";
+---
+
+<Layout
+  title="Portfolio Joan - Proyectos"
+  description="Una selección de proyectos que demuestran mis habilidades."
+>
+  <main>
+    <div class="hero-container">
+      <canvas id="particle-canvas"></canvas>
+
+      <div class="content-overlay">
+        <SectionContainer id="proyectos" class="section-wide">
+          <!-- <h2
+            class="text-4xl font-semibold mb-10 flex gap-x-3 items-center text-gradient justify-center"
+          >
+            Proyectos
+          </h2> -->
+
+          <ProjectsGrid />
+        </SectionContainer>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* --- ESTILOS DE PÁGINA (Similares a Contacto) --- */
+  body {
+    margin: 0;
+    background-color: #000;
+    overflow-x: hidden;
+  }
+
+  .hero-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: auto; /* Permitir que crezca */
+    overflow: hidden;
+  }
+
+  #particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* height: 100%; */
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .content-overlay {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Empezar desde arriba */
+    padding: 6rem 1rem 4rem 1rem; /* Más padding arriba y abajo */
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, #7e3af2, #fc6610);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Hacemos la sección de proyectos más ancha que la de contacto */
+  .section-wide {
+    width: 100%;
+    max-width: 1024px; /* Más ancho para el grid */
+    margin: 0 auto;
+    /* Sin el fondo borroso para que las tarjetas destaquen */
+  }
+</style>
+
+<script>
+  import * as THREE from "three";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("particle-canvas");
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      canvas: container,
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    camera.position.z = 5;
+
+    // --- ✨ LÓGICA DE GALERÍA (Lenta) ---
+    const particlesCount = 3000;
+    const positions = new Float32Array(particlesCount * 3);
+    for (let i = 0; i < particlesCount * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 10;
+    }
+
+    const particlesGeometry = new THREE.BufferGeometry();
+    particlesGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3)
+    );
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.02,
+      color: 0xffffff,
+    });
+    const particleSystem = new THREE.Points(
+      particlesGeometry,
+      particlesMaterial
+    );
+    scene.add(particleSystem);
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // ✨ LA LÓGICA LENTA:
+      // En lugar de moverlas hacia la cámara, las rotamos lentamente.
+      // Esto da una sensación de "galería" o "nebulosa" ambiental.
+      particleSystem.rotation.y += 0.0003;
+      particleSystem.rotation.x += 0.0001;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // --- Responsivo (Igual) ---
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    });
+  });
+</script>

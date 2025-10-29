@@ -1,10 +1,205 @@
+---
+// Tu lógica de `currentPath` es perfecta.
+const currentPath = Astro.url.pathname.replace(/\/$/, ""); 
+---
+
 <header
-  class="fixed flex flex-col z-10 bg-zinc-900 w-full sm:justify-center items-center py-4  mx-auto text-white dark:text-white"
+  class="fixed flex flex-col z-10 w-full mx-auto text-white"
 >
-  <nav class="flex sm: gap-4 sm:gap-x-10 ">
-    <a href="/" class="hover:text-violet-500">Inicio</a>
-    <a href="#experiencia" class="hover:text-violet-500">Experiencia</a>
-    <a href="#proyectos" class="hover:text-violet-500">Proyectos</a>
-    <a href="#contacto" class="hover:text-violet-500">Contacto</a>
+  <nav class="flex w-full justify-center bg-zinc-900 shadow-xl">
+    <div class="flex max-w-6xl w-full px-4 sm:px-6 justify-between items-center md:justify-center">
+      
+      <a
+        href="/"
+        aria-label="Ir al inicio"
+        class:list={[
+          "py-3 text-lg font-bold transition-colors md:hidden", 
+          // Corregimos la lógica para que coincida con tu replace()
+          (currentPath === "") 
+            ? "text-gradient" 
+            : "text-white hover:text-zinc-300"
+        ]}
+      >
+        Inicio
+      </a>
+
+      <button
+        id="menu-toggle"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        class="md:hidden p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <div
+        id="menu-links"
+        class="
+          hidden flex-col items-start
+          absolute top-full left-0 w-full bg-zinc-900 shadow-lg
+          md:flex md:flex-row md:items-end md:static md:w-auto md:bg-transparent md:shadow-none
+        "
+      >
+        <a
+          href="/"
+          class:list={[
+            "tab-item mobile-link",
+            "hidden md:flex", 
+            { "active-tab": currentPath === "" },
+          ]}
+        >
+          Inicio
+        </a>
+        
+        <a
+          href="/experience"
+          class:list={[
+            "tab-item mobile-link",
+            { "active-tab": currentPath === "/experience" },
+            { "active-mobile": currentPath === "/experience" },
+          ]}
+        >
+          Experiencia
+        </a>
+
+        <a
+          href="/projects"
+          class:list={[
+            "tab-item mobile-link",
+            { "active-tab": currentPath === "/projects" },
+            { "active-mobile": currentPath === "/projects" },
+          ]}
+        >
+          Proyectos
+        </a>
+        <a
+          href="/activities"
+          class:list={[
+            "tab-item mobile-link",
+            { "active-tab": currentPath === "/activities" },
+            { "active-mobile": currentPath === "/activities" },
+          ]}
+        >
+          Actividades
+        </a>
+
+        <a
+          href="/contact"
+          class:list={[
+            "tab-item mobile-link",
+            { "active-tab": currentPath === "/contact" },
+            { "active-mobile": currentPath === "/contact" },
+          ]}
+        >
+          Contacto
+        </a>
+      </div>
+    </div>
   </nav>
 </header>
+
+<!-- <div class="w-full h-px bg-white border-b-0 border-t-0 z-0 shadow-lg"></div> -->
+
+<script>
+  // Tu script de toggle es perfecto, no necesita cambios.
+  document.getElementById("menu-toggle")?.addEventListener("click", () => {
+    const menu = document.getElementById("menu-links");
+    const button = document.getElementById("menu-toggle");
+    
+    menu?.classList.toggle("hidden");
+    menu?.classList.toggle("flex"); 
+
+    const isExpanded = button?.getAttribute("aria-expanded") === "true";
+    button?.setAttribute("aria-expanded", String(!isExpanded));
+  });
+</script>
+
+
+<style>
+  /* --- ESTILOS PARA MÓVIL (Default) --- */
+  /* ... (Sin cambios aquí, .mobile-link, .active-mobile están bien) ... */
+  .mobile-link {
+    width: 100%;
+    padding: 1rem 1.5rem; 
+    border-bottom: 1px solid #27272a; 
+    color: #a1a1aa; 
+    font-weight: 500;
+    border-radius: 0;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .mobile-link:hover {
+    color: white;
+    background-color: #18181b; 
+  }
+  .active-mobile {
+    color: white;
+    font-weight: 600;
+    background-color: #27272a; 
+  }
+  .active-tab {
+    /* Vacío en móvil */
+  }
+
+  /* --- ESTILOS PARA ESCRITORIO (md: 768px y más) --- */
+  @media (min-width: 768px) {
+    .mobile-link {
+      /* ... (Sin cambios en la re-estilización de .mobile-link) ... */
+      width: auto;
+      padding: 0.5rem 1rem;
+      border: 1px solid transparent;
+      border-bottom: none;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      position: relative;
+      z-index: 2;
+    }
+    .mobile-link:hover:not(.active-tab) {
+      /* ... (Sin cambios en el hover) ... */
+      color: white;
+      background-color: #27272a;
+      border-top: 1px solid #3f3f46;
+    }
+    .active-mobile {
+      background-color: transparent;
+    }
+
+    /* 👇 *** AQUÍ ESTÁ EL CAMBIO 2 *** 👇
+      Cambiamos #0c0c0c por #000 (o el color exacto de fondo de tu <body>)
+    */
+    .active-tab {
+      color: white;
+      border: 2px solid white;
+      border-bottom: none;
+      
+      /* Coincide con el fondo de tu página */
+      background-color: #000; 
+
+      /* El 'box-shadow' también coincide con el fondo */
+      box-shadow:
+        0 4px 0 0 #000, /* Oculta la línea inferior */
+        0 -4px 10px rgba(0, 0, 0, 0.5); /* Sombra superior */
+      z-index: 5;
+    }
+  }
+  
+  /* Gradiente para el "Inicio" en móvil */
+  .text-gradient {
+    background: linear-gradient(to right, #7e3af2, #fc6610);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

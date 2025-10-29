@@ -1,0 +1,351 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+// Asumo que tu componente de contacto está aquí
+import ContactComponent from "../components/Contact.astro";
+---
+
+<Layout
+  title="Portfolio Joan - Contacto"
+  description="Cuéntame sobre tu proyecto y creemos algo increíble."
+>
+  <main>
+    <div class="hero-container">
+      <canvas id="particle-canvas"></canvas>
+
+      <div class="content-overlay">
+        <!-- <SectionContainer id="contacto" class="section">
+          <h2
+            class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-gradient justify-center"
+          >
+            Cuéntame Sobre tu Proyecto
+          </h2>
+          <ContactComponent />
+        </SectionContainer> -->
+        <SectionContainer id="contacto" class="section">
+          <!-- <h2
+            class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-gradient justify-center"
+          >
+            Cuéntame Sobre tu Proyecto
+          </h2> -->
+
+          <!-- <ContactComponent /> -->
+
+          <div class="social-links">
+            <a
+              href="https://github.com/2k12"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                ><path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                ></path></svg
+              >
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/joan-pastillo-donoso-7823272a1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                ><path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.783-1.75-1.75s.784-1.75 1.75-1.75 1.75.783 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                ></path></svg
+              >
+            </a>
+
+            <a href="mailto:jeipige@gmail.com" aria-label="Email">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                ><path
+                  d="M22 4H2C.9 4 0 4.9 0 6v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H2V8l10 7 10-7v10zM2 6l10 7L22 6H2z"
+                ></path></svg
+              >
+            </a>
+          </div>
+        </SectionContainer>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* --- ESTILOS DE BASE (La mayoría son iguales) --- */
+  body {
+    margin: 0;
+    background-color: #000;
+    overflow-x: hidden;
+  }
+
+  .hero-container {
+    position: relative;
+    width: 100%;
+    /* Hacemos que la página de contacto pueda crecer si el formulario es largo */
+    min-height: 100vh;
+    height: auto; /* Permitir que crezca */
+    overflow: hidden;
+  }
+
+  #particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .content-overlay {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Ajustamos el padding para el formulario */
+    padding: 6rem 1rem 2rem 1rem;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box; /* Importante para el padding */
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, #7e3af2, #fc6610);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* NOTA: Ya no necesitamos los estilos de #experience-preview
+    así que los he eliminado para mantener este archivo limpio.
+  */
+
+  /* Aseguramos que el formulario se vea bien */
+
+  */ .section {
+    width: 100%;
+    max-width: 600px; /* Ajusta el ancho máximo de tu formulario */
+    margin: 0 auto;
+    background: rgba(10, 10, 10, 0.5); /* Fondo semitransparente opcional */
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(126, 58, 242, 0.3);
+  }
+
+  /* 👇 AÑADE ESTO: EL ESTILO DEL "COMETA" 👇 */
+  #mouse-aura {
+    position: fixed; /* Fijo a la ventana */
+    width: 350px; /* "Area mediana" */
+    height: 350px;
+
+    /* "Sin forma definida" - un brillo suave */
+    background: radial-gradient(
+      circle,
+      rgba(126, 58, 242, 0.15) 0%,
+      /* rgba(84, 22, 190, 0.854) 0%, */ /* Tu color morado, pero sutil */
+        transparent 70%
+    );
+    border-radius: 50%;
+
+    /* CLAVE: Deja pasar los clics y el hover */
+    pointer-events: none;
+
+    /* Detrás del contenido (z-index: 2), delante del canvas (z-index: 0) */
+    z-index: 1;
+
+    top: 0;
+    left: 0;
+    /* Lo centramos con JS, pero añadimos una transición suave */
+    transition: transform 0.07s ease-out;
+  }
+
+  /* 👇 MODIFICA ESTO: LOS ENLACES SOCIALES 👇 */
+
+ .social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Para centrar en modo columna */
+    margin-top: 2rem;
+    
+    /* --- 1. ESTADO MÓVIL (DEFAULT) --- */
+    flex-direction: column; /* Apilados verticalmente */
+    gap: 2rem; /* Espacio vertical */
+  }
+  /* --- 2. ESTADO DESKTOP (sm: 640px) --- */
+  /* Usamos un breakpoint (sm) para cambiar el layout */
+  @media (min-width: 640px) {
+    .social-links {
+      flex-direction: row; /* En fila */
+      gap: 5rem; /* Un 'gap' grande pero manejable (80px) */
+    }
+  }
+
+  .social-links a {
+    display: inline-block;
+    color: white;
+
+    /* --- ESTADO INICIAL (OCULTO) --- */
+    opacity: 0.04; /* Casi invisible */
+    transform: scale(0.9); /* Muy pequeño */
+    filter: blur(4px); /* Borroso, "fuera de foco" */
+
+    /* La animación de "aparición" (usa 'all' para incluir filter) */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .social-links svg {
+    /* --- TAMAÑO BASE "JIGANTEZCO" --- */
+    /* El icono en sí es grande, pero el 'scale' lo controla */
+    width: 200px;
+    height: 200px;
+    fill: currentColor;
+  }
+
+  /* --- ESTADO FINAL (APARECE) --- */
+  .social-links a:hover {
+    opacity: 1; /* Totalmente visible */
+    transform: scale(1.1); /* Crece a 110% de 80px */
+
+    /* Quitamos el blur y añadimos el brillo de galaxia */
+    filter: blur(0) drop-shadow(0 0 15px rgba(140, 15, 230, 0.7));
+      /* drop-shadow(0 0 8px rgba(252, 102, 16, 0.7)); */
+  }
+</style>
+
+<script>
+  import * as THREE from "three";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("particle-canvas");
+    if (!container) return;
+
+    // --- Configuración de THREE.js (Básica) ---
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      canvas: container,
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Posición de la cámara
+    camera.position.z = 5;
+
+    // --- ✨ LÓGICA DEL HIPERESPACIO ✨ ---
+
+    // 🌌 Fondo de partículas
+    const particlesCount = 3000; // Más partículas para un efecto más denso
+    const positions = new Float32Array(particlesCount * 3);
+
+    for (let i = 0; i < particlesCount * 3; i++) {
+      // Posición aleatoria en un "cubo"
+      positions[i] = (Math.random() - 0.5) * 10;
+    }
+
+    const particlesGeometry = new THREE.BufferGeometry();
+    particlesGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3)
+    );
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.02,
+      color: 0xffffff,
+    });
+    const particleSystem = new THREE.Points(
+      particlesGeometry,
+      particlesMaterial
+    );
+    scene.add(particleSystem);
+
+
+    // --- ✨ LÓGICA DE COLOR HOVER AÑADIDA ---
+
+    // 1. Definir los colores (Blanco y tu morado)
+    // Usamos el objeto Color de Three.js
+    const defaultColor = new THREE.Color(0xffffff);
+    const hoverColor = new THREE.Color(0x7e3ad4); // El morado de tu gradiente
+
+    // 2. Variable de estado: 'targetColor' guarda el color al que QUEREMOS ir
+    // (Inicia en blanco)
+    const targetColor = new THREE.Color(0xffffff);
+
+    // 3. Encontrar todos tus enlaces sociales
+    const socialLinks = document.querySelectorAll(".social-links a");
+
+    // 4. Añadir los listeners a CADA enlace
+    socialLinks.forEach((link) => {
+      // Cuando el mouse entra
+      link.addEventListener("mouseenter", () => {
+        // Actualizamos el 'target' al color hover
+        targetColor.set(hoverColor);
+      });
+
+      // Cuando el mouse sale
+      link.addEventListener("mouseleave", () => {
+        // Actualizamos el 'target' de vuelta al blanco
+        targetColor.set(defaultColor);
+      });
+    });
+
+    // 🎞️ Animación de Hipervelocidad
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Obtenemos el array de posiciones
+      const positions = particlesGeometry.attributes.position.array;
+      const speed = 0.03; // Velocidad del viaje
+
+      // ✨ La Magia: mover cada partícula en el eje Z (hacia la cámara)
+      for (let i = 0; i < positions.length; i += 3) {
+        // La posición Z es el índice i + 2
+        positions[i + 2] += speed;
+
+        // Si la partícula pasa la cámara (Z > 5)
+        if (positions[i + 2] > 5) {
+          // La reseteamos al fondo (Z = -5)
+          positions[i + 2] = -5;
+        }
+      }
+
+      // ¡Muy importante! Notificar a Three.js que las posiciones cambiaron
+      particlesGeometry.attributes.position.needsUpdate = true;
+
+      particleSystem.material.color.lerp(targetColor, 0.05);
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // 📱 Responsivo
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    });
+  });
+</script>

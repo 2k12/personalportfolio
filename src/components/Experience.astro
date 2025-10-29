@@ -1,35 +1,35 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
 
-const EXPERIENCE = [
+export const EXPERIENCE = [
   {
     date: "Septiembre 2023 - Actualidad",
     job: "Desarrollador Full Stack",
     title: "Easy Ecommerce",
     description:
-      "Easy Ecommerce es una plataforma completa de comercio electrónico que ofrece a los usuarios la capacidad de crear, administrar y hacer crecer tiendas en línea de manera fácil y eficiente. Con una interfaz intuitiva y potentes herramientas integradas, Easy Ecommerce permite a los usuarios personalizar su tienda, agregar productos, gestionar inventarios y procesar pagos de manera sencilla.",
-  }
-  // ,
+      "Easy Ecommerce es una plataforma completa de comercio electrónico que ofrece a los usuarios la capacidad de crear, administrar y hacer crecer tiendas en línea de manera fácil y eficiente. Con una interfaz intuitiva y potentes herramientas integradas, Easy Ecommerce permite personalizar tiendas, gestionar inventarios y procesar pagos fácilmente.",
+  },
   // {
   //   date: "Diciembre 2023",
+  //   job: "Desarrollador Web",
   //   title: "Plantz",
   //   description:
-  //     "Sistema de Gestión de especies de plantas endemicas de la Provincia de Imbabura.",
+  //     "Sistema de Gestión de especies de plantas endémicas de la Provincia de Imbabura.",
   // },
   // {
-  //   date: "Junio 2023",
-  //   title: "Plantz",
+  //   date: "Junio 2024",
+  //   job: "Desarrollador Backend",
+  //   title: "UTNCoin",
   //   description:
-  //     "Sistema de Gestión de especies de plantas endemicas de la Provincia de Imbabura.",
+  //     "Proyecto de criptomoneda universitaria para simular una economía digital en un entorno académico controlado.",
   // },
 ];
 ---
 
 <ol class="relative border-s border-gray-200 ml-4">
-  {EXPERIENCE.map((experience) => 
+  {EXPERIENCE.map((experience) => (
     <li class="mb-10 ms-4">
-        <ExperienceItem {...experience}/>
+      <ExperienceItem {...experience} />
     </li>
-  )}
- 
+  ))}
 </ol>
