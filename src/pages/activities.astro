@@ -251,7 +251,7 @@ const ICONS = {
   .timeline-icon {
     position: absolute;
     z-index: 10;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     width: 50px;
@@ -276,6 +276,7 @@ const ICONS = {
 
   @media (min-width: 768px) {
     .timeline-icon {
+      display: flex;
       top: 50%;
       transform: translateY(-50%);
     }
@@ -301,19 +302,14 @@ const ICONS = {
     overflow: hidden;
     transition: all 0.3s ease;
     /* Padding para móvil */
-    padding-top: 60px; /* Espacio para el icono en móvil */
+    /* padding-top: 60px;  */
+    padding-top: 0; /* Espacio para el icono en móvil */
   }
 
   .timeline-card:hover {
     transform: translateY(-5px);
     border-color: rgba(126, 58, 242, 0.7);
     box-shadow: 0 10px 30px rgba(126, 58, 242, 0.2);
-  }
-
-  @media (min-width: 768px) {
-    .timeline-card {
-      padding-top: 0; /* Reset padding en desktop */
-    }
   }
 
   .card-image {
