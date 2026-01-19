@@ -12,9 +12,10 @@ const {
   strategy = "lines",
   delay = 0,
 } = Astro.props;
-const Tag = tag;
+const Tag = tag as any;
 ---
 
+<!-- @ts-ignore -->
 <Tag
   class={`animated-text opacity-0 ${className}`}
   data-strategy={strategy}
@@ -28,7 +29,7 @@ const Tag = tag;
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   // Función simple para dividir texto (alternativa a SplitText de pago)
-  function splitText(element, type) {
+  function splitText(element: HTMLElement, type: string) {
     const text = element.innerText;
     element.innerHTML = "";
 
@@ -42,7 +43,7 @@ const Tag = tag;
       return element.children;
     } else if (type === "words") {
       const words = text.split(" ");
-      words.forEach((word, i) => {
+      words.forEach((word: string, i: number) => {
         const span = document.createElement("span");
         span.style.display = "inline-block";
         span.textContent = word + (i < words.length - 1 ? "\u00A0" : "");
@@ -60,21 +61,22 @@ const Tag = tag;
   function initAnimations() {
     const elements = document.querySelectorAll(".animated-text");
 
-    elements.forEach((el: HTMLElement) => {
+    elements.forEach((el) => {
+      const element = el as HTMLElement; // Cast explicitly
       // Evitar re-animar si ya se procesó
-      if (el.dataset.processed) return;
-      el.dataset.processed = "true";
+      if (element.dataset.processed) return;
+      element.dataset.processed = "true";
 
-      const strategy = el.dataset.strategy;
-      const delay = parseFloat(el.dataset.delay || "0");
+      const strategy = element.dataset.strategy;
+      const delay = parseFloat(element.dataset.delay || "0");
 
-      gsap.set(el, { opacity: 1 }); // Hacer visible para manipular
+      gsap.set(element, { opacity: 1 }); // Hacer visible para manipular
 
       if (strategy === "chars") {
-        const chars = splitText(el, "chars");
+        const chars = splitText(element, "chars");
         gsap.from(chars, {
           scrollTrigger: {
-            trigger: el,
+            trigger: element,
             start: "top 85%",
           },
           y: 50,
@@ -86,10 +88,10 @@ const Tag = tag;
           delay: delay,
         });
       } else if (strategy === "words") {
-        const words = splitText(el, "words");
+        const words = splitText(element, "words");
         gsap.from(words, {
           scrollTrigger: {
-            trigger: el,
+            trigger: element,
             start: "top 85%",
           },
           y: 20,
@@ -101,9 +103,9 @@ const Tag = tag;
         });
       } else {
         // Simple fade up for lines/block
-        gsap.from(el, {
+        gsap.from(element, {
           scrollTrigger: {
-            trigger: el,
+            trigger: element,
             start: "top 85%",
           },
           y: 30,

@@ -23,7 +23,8 @@ const { class: className, animation = "fade", delay = 0 } = Astro.props;
   function initScrollReveal() {
     const elements = document.querySelectorAll(".scroll-reveal");
 
-    elements.forEach((el: HTMLElement) => {
+    elements.forEach((element) => {
+      const el = element as HTMLElement;
       if (el.dataset.processed) return;
       el.dataset.processed = "true";
 

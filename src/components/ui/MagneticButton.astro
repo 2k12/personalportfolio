@@ -25,7 +25,8 @@ const Tag = href ? "a" : "button";
   function initMagneticButtons() {
     const buttons = document.querySelectorAll(".magnetic-btn");
 
-    buttons.forEach((btn: HTMLElement) => {
+    buttons.forEach((b) => {
+      const btn = b as HTMLElement;
       if (btn.dataset.initialized) return;
       btn.dataset.initialized = "true";
 
