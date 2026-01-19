@@ -13,191 +13,25 @@ const GraduationCapIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
 
 <div class="hero-container">
   <canvas id="particle-canvas"></canvas>
-
-  <div class="text-overlay">
-    <img
-      src="/yo_jp_i.png"
-      alt="Foto de Joan"
-      id="profileImage"
-      class="profile-img animate-fade-in"
-    />
-
-    <h1 class="text-gradient animate-fade-in delay-100">Hola, soy Joan</h1>
-
-    <SectionContainer
-      class="p-0 bg-transparent animate-fade-in delay-200"
-      id="top"
-    >
-      <h2
-        class="text-lg lg:text-xl opacity-90 text-wrap max-w-[700px] text-white"
-      >
-        <span class="block"> Desarrollador Full Stack en EasyEcommerce. </span>
-        <span class="block text-white/70">
-          Estudiante de Ingeniería de Software en la UTN.
-        </span>
-
-        <br />
-        Desarrollador de <span class="text-gradient-flag"
-          >Imbabura, Ecuador</span
-        >. Me especializo en Desarrollo Web, Desarrollo Móvil y Administración
-        de Bases de Datos.
-      </h2>
-
-      <nav
-        class="flex gap-4 mt-8 flex-wrap text-white justify-center animate-fade-in delay-300"
-      >
-        <SocialPill href="https://github.com/2k12">
-          <GitHubIcon class="size-4 md:size-6" />
-          GitHub
-        </SocialPill>
-        <SocialPill
-          href="https://www.linkedin.com/in/joan-pastillo-donoso-7823272a1/"
-        >
-          <LinkedInIcon class="size-4 md:size-6" />
-          LinkedIn
-        </SocialPill>
-        <SocialPill href="mailto:jeipige@gmail.com">
-          <MailIcon class="size-4 md:size-6" />
-          jeipige@gmail.com
-        </SocialPill>
-      </nav>
-    </SectionContainer>
-  </div>
 </div>
 
 <style>
-  body {
-    margin: 0;
-    background-color: #000;
-  }
-
   .hero-container {
     width: 100%;
-    height: 100vh;
-    position: relative;
+    height: 100%;
+    position: absolute;
+    inset: 0;
     overflow: hidden;
   }
 
   #particle-canvas {
-    position: fixed; /* Usamos fixed para que siempre esté de fondo */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
-    pointer-events: none; /* Dejamos que el overlay reciba clics */
-  }
-
-  /* CAMBIO 5: 
-    Simplificamos los estilos de la imagen. 
-    Ya no necesitamos el 'container' ni el 'button'.
-  */
-  .profile-img {
-    width: clamp(150px, 25vw, 200px); /* Ligeramente más pequeño y flexible */
-    aspect-ratio: 1/1; /* Mantiene la proporción 1:1 */
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
-    transition: opacity 0.3s ease;
-  }
-
-  .text-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto;
-    box-sizing: border-box;
-    gap: 1.5rem; /* 24px */
-
-    /* --- 👇 LA SOLUCIÓN RESPONSIVE 👇 --- */
-
-    /* 1. MÓVIL (DEFAULT):
-    Usamos 'flex-start' y 'padding-top' para control manual.
-    'min-height: 100%' asegura que ocupe al menos la pantalla,
-    permitiendo el scroll si es necesario.
-  */
-    justify-content: flex-start;
-    padding: 6rem 1rem 4rem 1rem; /* 96px arriba (para librar el header) */
-    min-height: 100%;
-
-    /* 2. DESKTOP (md: 768px y más):
-    En pantallas más grandes, el contenido cabe.
-    Reactivamos el centrado vertical y ajustamos el padding.
-  */
-    @media (min-width: 768px) {
-      justify-content: center;
-      padding: 4rem 1rem 4rem 1rem; /* Padding más equilibrado */
-      min-height: 100vh; /* Volvemos a 100vh */
-    }
-  }
-
-  /* CAMBIO 6: 
-    Actualizamos el gradiente para que coincida con tu marca.
-  */
-  .text-gradient {
-    font-family: "Arial", sans-serif;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: bold;
-    background: linear-gradient(to right, #7e3af2, #fc6610);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-  }
-
-  /* CAMBIO 7: 
-    Nuevas clases de "highlight" para la biografía.
-  */
-  .text-gradient-flag {
-    background: linear-gradient(to right, #ffce00, #007fff, #ff0000);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600;
-  }
-  .text-brand-purple {
-    color: #a78bfa; /* Un morado claro legible */
-    font-weight: 600;
-  }
-  .text-brand-orange {
-    color: #fca5a5; /* Un naranja/rojo claro legible */
-    font-weight: 600;
-  }
-
-  /* CAMBIO 8: 
-    Animaciones de entrada.
-  */
-  @keyframes fade-in-up {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fade-in-up 0.5s ease-out forwards;
-    opacity: 0; /* Inicia oculto */
-  }
-
-  /* Retrasos para la animación escalonada */
-  .delay-100 {
-    animation-delay: 0.1s;
-  }
-  .delay-200 {
-    animation-delay: 0.2s;
-  }
-  .delay-300 {
-    animation-delay: 0.3s;
+    pointer-events: none;
   }
 </style>
 
@@ -210,7 +44,7 @@ const GraduationCapIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
 
     // --- CAMBIO 10: Inicialización de Three.js Limpia ---
     const canvas = document.getElementById(
-      "particle-canvas"
+      "particle-canvas",
     ) as HTMLCanvasElement | null;
     if (!canvas) return;
 
@@ -219,7 +53,7 @@ const GraduationCapIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas, // Pasamos el canvas directamente
@@ -239,7 +73,7 @@ const GraduationCapIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
     const particlesGeometry = new THREE.BufferGeometry();
     particlesGeometry.setAttribute(
       "position",
-      new THREE.BufferAttribute(positions, 3)
+      new THREE.BufferAttribute(positions, 3),
     );
     const particlesMaterial = new THREE.PointsMaterial({
       size: 0.02,
@@ -247,7 +81,7 @@ const GraduationCapIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
     });
     const particleSystem = new THREE.Points(
       particlesGeometry,
-      particlesMaterial
+      particlesMaterial,
     );
     scene.add(particleSystem);
     camera.position.z = 5;

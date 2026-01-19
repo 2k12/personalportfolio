@@ -1,128 +1,250 @@
 ---
-// Definición de habilidades directamente en este archivo
-const SKILLS = [
-  {
-    name: "React",
-    keywords: ["Desarrollo Web", "Frontend"],
-    background: "border-[#61DAFB] bg-[#61DAFB]/10",
-  },
-  {
-    name: "Flutter",
-    keywords: ["Desarrollo Web", "Frontend"],
-    background: "border-[#02569B] bg-[#02569B]/10",
-  },
-  {
-    name: "Astro",
-    keywords: ["Desarrollo Web", "Frontend"],
-    background: "border-[#805AD5] bg-[#805AD5]/10",
-  },
-  {
-    name: "Laravel",
-    keywords: ["Desarrollo Web", "Backend"],
-    background: "border-[#F05340] bg-[#F05340]/10",
-  },
-  {
-    name: "Express",
-    keywords: ["Desarrollo Web", "Backend"],
-    background: "border-[#44CC11] bg-[#44CC11]/10",
-  },
-  {
-    name: "Node JS",
-    keywords: ["Desarrollo Web", "Backend"],
-    background: "border-[#68A063] bg-[#68A063]/10",
-  },
-  {
-    name : "PHP",
-    keywords:["Desarrollo Web", "Frontend"],
-    background: "text-[#7377AD]"
-  },
-  {
-    name: "Java",
-    keywords: ["Desarrollo Web", "Backend"],
-    background: "border-[#8B008B] bg-[#8B008B]/10",
-  },
-  {
-    name: "JavaScript",
-    keywords: ["Desarrollo Web", "Frontend"],
-    background: "border-[#F7DF1E] bg-[#F7DF1E]/10",
-  },
-  {
-    name: "C#",
-    keywords: ["Desarrollo Web", "Backend"],
-    background: "border-[#002050] bg-[#002050]/10",
-  },
-  {
-    name: "Python",
-    keywords: ["Desarrollo Web", "Backend"],
-    background: "border-[#FFD43B] bg-[#FFD43B]/10",
-  },
-  {
-    name: "GitHub",
-    keywords: ["Desarrollo Web", "Colaboración"],
-    background: "border-[#24292E] bg-[#24292E]/10",
-  },
-  {
-    name: "Jest",
-    keywords: ["Desarrollo Web", "Testing"],
-    background: "border-[#F04D7C] bg-[#F04D7C]/10",
-  },
-  {
-    name: "Trello",
-    keywords: ["Gestión de Proyectos"],
-    background: "border-[#0079BF] bg-[#0079BF]/10",
-  },
-  {
-    name: "Dart",
-    keywords: ["Desarrollo Web", "Frontend"],
-    background: "border-[#0175C2] bg-[#0175C2]/10",
-  },
-  {
-    name: "TensorFlow",
-    keywords: ["Desarrollo Web", "Inteligencia Artificial"],
-    background: "border-[#FF6F00] bg-[#FF6F00]/10",
-  },
-  {
-    name: "SQL",
-    keywords: ["Bases de Datos", "SQL"],
-    background: "border-[#800080] bg-[#800080]/10",
-  },
-  {
-    name: "MySQL",
-    keywords: ["Bases de Datos", "MySQL"],
-    background: "border-[#0000FF] bg-[#0000FF]/10",
-  },
-  {
-    name: "PostgreSQL",
-    keywords: ["Bases de Datos", "PostgreSQL"],
-    background: "border-[#000080] bg-[#000080]/10",
-  },
-  {
-    name: "MongoDB",
-    keywords: ["Bases de Datos", "NoSQL"],
-    background: "border-[#008000] bg-[#008000]/10",
-  },
-  {
-    name: "SQLite",
-    keywords: ["Bases de Datos", "SQLite"],
-    background: "border-[#808080] bg-[#808080]/10 ",
-  },
-  // Agrega más habilidades según necesites
+const SKILLS_LANGUAGES = [
+  { name: "JavaScript", background: "bg-yellow-500/10 border-yellow-500" },
+  { name: "TypeScript", background: "bg-blue-500/10 border-blue-500" }, // Added TS
+  { name: "Python", background: "bg-yellow-300/10 border-yellow-300" },
+  { name: "PHP", background: "bg-indigo-300/10 border-indigo-300" },
+  { name: "Java", background: "bg-orange-600/10 border-orange-600" },
+  { name: "C#", background: "bg-purple-600/10 border-purple-600" },
+  { name: "Dart", background: "bg-cyan-500/10 border-cyan-500" },
+  { name: "SQL", background: "bg-pink-500/10 border-pink-500" },
+  { name: "Go", background: "bg-cyan-600/10 border-cyan-600" },
 ];
 
+const SKILLS_FRAMEWORKS = [
+  { name: "React", background: "bg-cyan-400/10 border-cyan-400" },
+  { name: "Astro", background: "bg-orange-500/10 border-orange-500" },
+  { name: "Next.js", background: "bg-white/10 border-white" }, // Added Next
+  { name: "Flutter", background: "bg-blue-400/10 border-blue-400" },
+  { name: "Laravel", background: "bg-red-500/10 border-red-500" },
+  { name: "Express", background: "bg-green-500/10 border-green-500" },
+];
+
+const SKILLS_LIBRARIES = [
+  { name: "GSAP", background: "bg-green-400/10 border-green-400" }, // Requested
+  { name: "TailwindCSS", background: "bg-cyan-300/10 border-cyan-300" },
+  { name: "Zustand", background: "bg-orange-100/10 border-orange-100" },
+  { name: "Three.js", background: "bg-white/10 border-white" },
+  { name: "Jest", background: "bg-red-400/10 border-red-400" },
+  { name: "TensorFlow", background: "bg-orange-400/10 border-orange-400" },
+];
+
+const SKILLS_TOOLS = [
+  { name: "Node.js", background: "bg-green-600/10 border-green-600" },
+  { name: "GitHub", background: "bg-white/5 border-zinc-500" },
+  { name: "Trello", background: "bg-blue-600/10 border-blue-600" },
+  { name: "PostgreSQL", background: "bg-blue-700/10 border-blue-700" },
+  { name: "MySQL", background: "bg-blue-300/10 border-blue-300" },
+  { name: "MongoDB", background: "bg-green-500/10 border-green-500" },
+  { name: "Figma", background: "bg-pink-400/10 border-pink-400" },
+];
+
+const ALL_CATEGORIES = [
+    { title: "Lenguajes", items: SKILLS_LANGUAGES, speed: 0.5 },
+    { title: "Frameworks", items: SKILLS_FRAMEWORKS, speed: 0.8 }, // Slightly faster
+    { title: "Librerías", items: SKILLS_LIBRARIES, speed: 0.6 },
+    { title: "Herramientas", items: SKILLS_TOOLS, speed: 0.7 } 
+];
 ---
-<div class="flex-container  h-24 py-6 ">
-  <div class="animate-marquee">
-    {SKILLS.map(skill => (
-      <div class={`skill-box rounded border border-solid ${skill.background}`}>
-        <span class="skill-name">{skill.name}</span>
-      </div>
+
+<div class="skills-wrapper flex flex-col gap-12 w-full py-10 user-select-none">
+    
+    {ALL_CATEGORIES.map((category, catIndex) => (
+        <div class="w-full relative overflow-hidden">
+            <h4 class="text-sm uppercase tracking-widest text-zinc-500 mb-6 font-mono px-4">
+                {category.title}
+            </h4>
+            
+            <!-- Gradient Masks -->
+            <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none"></div>
+
+            <div class="skills-track flex items-center gap-4 w-max cursor-grab active:cursor-grabbing" data-speed={category.speed}>
+                {/* Render multiple times for loop */}
+                {[...category.items, ...category.items, ...category.items, ...category.items].map((skill, index) => (
+                    <div class={`skill-item flex-shrink-0 px-5 py-2 rounded-lg border backdrop-blur-sm transition-all duration-300 hover:scale-105 ${skill.background}`}>
+                        <span class="font-medium text-white/90 whitespace-nowrap text-sm">
+                            {skill.name}
+                        </span>
+                    </div>
+                ))}
+            </div>
+        </div>
     ))}
-    <!-- Segundo bloque idéntico para loop continuo -->
-    {SKILLS.map(skill => (
-      <div class={`skill-box rounded border border-solid ${skill.background}`}>
-        <span class="skill-name">{skill.name}</span>
-      </div>
-    ))}
-  </div>
-  
+
 </div>
+
+<script>
+  import { gsap, Observer } from "../animations/core";
+
+  // Observer ya registrado en core, pero por seguridad:
+  // gsap.registerPlugin(Observer);
+
+  document.addEventListener("astro:page-load", () => {
+    
+    // Select ALL tracks
+    const tracks = document.querySelectorAll(".skills-track");
+    
+    tracks.forEach((track, i) => {
+        const items = track.querySelectorAll(".skill-item"); // items inside this track
+        const speed = parseFloat((track as HTMLElement).dataset.speed || "0.5");
+        const direction = 1; // Always consistent direction
+        // Create horizontal loop for EACH row
+        const loop = horizontalLoop(items, {
+            paused: false,
+            repeat: -1,
+            speed: speed, 
+            startPadding: 0,
+            paddingRight: 16, // gap-4 is 1rem = 16px
+            reversed: false, 
+            snap: false,
+        });
+
+        // --- Interaction ---
+        Observer.create({
+            onChangeY: (self) => {
+                const velocity = self.velocityY * 0.005;
+                gsap.to(loop, {
+                timeScale: (1 + Math.abs(velocity)),
+                duration: 0.5,
+                ease: "power1.out",
+                overwrite: true,
+                onComplete: () => {
+                   gsap.to(loop, { timeScale: 1, duration: 2, ease: "power2.inOut" });
+                },
+                });
+            },
+        });
+
+        track.addEventListener("mouseenter", () => {
+             gsap.to(loop, { timeScale: 0.2, duration: 0.5 });
+        });
+        track.addEventListener("mouseleave", () => {
+             gsap.to(loop, { timeScale: 1, duration: 0.5 });
+        });
+    });
+
+  });
+
+  /*
+   * Helper function de GSAP para Loops Horizontales Infinitos
+   * Fuente: https://greensock.com/docs/v3/HelperFunctions#loop
+   * Typings added to satisfy TypeScript
+   */
+  function horizontalLoop(items: any[] | NodeListOf<Element>, config: any) {
+    items = gsap.utils.toArray(items);
+    config = config || {};
+    let tl = gsap.timeline({
+        repeat: config.repeat,
+        paused: config.paused,
+        defaults: { ease: "none" },
+        onReverseComplete: () => {
+          tl.totalTime(tl.rawTime() + tl.duration() * 100);
+        },
+      }),
+      length = items.length,
+      startX = items[0].offsetLeft,
+      times: any[] = [],
+      widths: any[] = [],
+      xPercents: any[] = [],
+      curIndex = 0,
+      pixelsPerSecond = (config.speed || 1) * 100,
+      snap =
+        config.snap === false
+          ? (v: any) => v
+          : gsap.utils.snap(config.snap || 1),
+      totalWidth: number,
+      curX,
+      distanceToStart,
+      distanceToLoop,
+      item,
+      i;
+
+    gsap.set(items, {
+      // convert "x" to "xPercent" to make things responsive, and populate the widths/xPercents Arrays to make lookups faster.
+      xPercent: (i, el: any) => {
+        let w = (widths[i] = parseFloat(
+          gsap.getProperty(el, "width", "px") as string,
+        ));
+        xPercents[i] = snap(
+          (parseFloat(gsap.getProperty(el, "x", "px") as string) / w) * 100 +
+            (gsap.getProperty(el, "xPercent") as number),
+        );
+        return xPercents[i];
+      },
+    });
+
+    gsap.set(items, { x: 0 });
+
+    totalWidth =
+      items[length - 1].offsetLeft +
+      (xPercents[length - 1] / 100) * widths[length - 1] -
+      startX +
+      items[length - 1].offsetWidth *
+        (gsap.getProperty(items[length - 1], "scaleX") as number) +
+      (parseFloat(config.paddingRight) || 0);
+
+    for (i = 0; i < length; i++) {
+      item = items[i];
+      curX = (xPercents[i] / 100) * widths[i];
+      distanceToStart = item.offsetLeft + curX - startX;
+      distanceToLoop =
+        distanceToStart +
+        widths[i] * (gsap.getProperty(item, "scaleX") as number);
+      tl.to(
+        item,
+        {
+          xPercent: snap(((curX - distanceToLoop) / widths[i]) * 100),
+          duration: distanceToLoop / pixelsPerSecond,
+        },
+        0,
+      )
+        .from(
+          item,
+          {
+            xPercent: snap(
+              ((curX - distanceToLoop + totalWidth) / widths[i]) * 100,
+            ),
+            duration: (totalWidth - distanceToLoop) / pixelsPerSecond,
+            immediateRender: false,
+          },
+          distanceToLoop / pixelsPerSecond,
+        )
+        .add("label" + i, distanceToStart / pixelsPerSecond);
+      times[i] = distanceToStart / pixelsPerSecond;
+    }
+
+    function toIndex(index: any, vars: any) {
+      vars = vars || {};
+      Math.abs(index - curIndex) > length / 2 &&
+        (index += index > curIndex ? -length : length); // always go in the shortest direction
+      let newIndex = gsap.utils.wrap(0, length, index),
+        time = times[newIndex];
+      if (time > tl.time() !== index > curIndex) {
+        // if we're wrapping the timeline's playhead, make the proper adjustments
+        vars.modifiers = { time: gsap.utils.wrap(0, tl.duration()) };
+        time += tl.duration() * (index > curIndex ? 1 : -1);
+      }
+      curIndex = newIndex;
+      vars.overwrite = true;
+      return tl.tweenTo(time, vars);
+    }
+
+    // Explicitly casting to any to attach custom properties
+    (tl as any).next = (vars: any) => toIndex(curIndex + 1, vars);
+    (tl as any).previous = (vars: any) => toIndex(curIndex - 1, vars);
+    (tl as any).current = () => curIndex;
+    (tl as any).toIndex = (index: any, vars: any) => toIndex(index, vars);
+    (tl as any).times = times;
+
+    tl.progress(1, true).progress(0, true); // pre-render for performance
+
+    if (config.reversed) {
+      if ((tl.vars as any).onReverseComplete) {
+        (tl.vars as any).onReverseComplete();
+      }
+      tl.reverse();
+    }
+    return tl;
+  }
+</script>

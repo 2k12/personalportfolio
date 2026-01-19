@@ -1,154 +1,176 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SectionContainer from "../components/SectionContainer.astro";
-// 1. Importamos tu componente de proyectos
-import ProjectsGrid from "../components/Projects.astro";
+import Footer from "../components/Footer.astro";
+
+const PROJECTS = [
+  {
+    title: "Plantz",
+    category: "IoT / Dashboard",
+    description: "Aplicación Web de Gestión de Especies del Mundo Plantae según su Taxonomía.",
+    image: "/projects/plantz.webp", // Usa imágenes reales si las tienes
+    link: "#",
+    year: "2023"
+  },
+  {
+    title: "DeliBums",
+    category: "Web3",
+    description: "DeliBums es una tienda web desarrollada con Astro y TailwindCSS, diseñada para ofrecer una experiencia moderna, rápida y visualmente atractiva en la presentación y venta de productos artesanales de chocolate.",
+    image: "/projects/delibums.png",
+    link: "https://delibums.netlify.app",
+    year: "2025"
+  },
+  {
+    title: "UTN Coin",
+    category: "EdTech / Gamification",
+    description: "Plataforma tecnológica para promover la participación estudiantil mediante una Moneda Virtual.",
+    image: "/projects/utn_coin.png",
+    link: "#",
+    year: "2025"
+  },
+  {
+    title: "loadING",
+    category: "Web3",
+    description: "loadING es una tienda web desarrollada con Astro y TailwindCSS, diseñada para ofrecer servicios de impresion ED y Modelado de productos",
+    image: "/projects/delibums.png",
+    link: "https://loadingib.netlify.app",
+    year: "2025"
+  },
+ 
+];
 ---
 
 <Layout
-  title="Portfolio Joan - Proyectos"
-  description="Una selección de proyectos que demuestran mis habilidades."
+  title="Projects | Joan"
+  description="Selected works & experiments."
 >
-  <main>
-    <div class="hero-container">
-      <canvas id="particle-canvas"></canvas>
-
-      <div class="content-overlay">
-        <SectionContainer id="proyectos" class="section-wide">
-          <!-- <h2
-            class="text-4xl font-semibold mb-10 flex gap-x-3 items-center text-gradient justify-center"
-          >
-            Proyectos
-          </h2> -->
-
-          <ProjectsGrid />
-        </SectionContainer>
+  <main class="bg-black min-h-screen relative w-full selection:bg-white selection:text-black">
+    
+    <div class="relative max-w-7xl mx-auto px-6 pt-32 pb-20 z-10">
+      
+      <!-- Minimalist Header -->
+      <div class="mb-24 opacity-0 animate-title">
+        <h1 class="text-[clamp(3.5rem,10vw,9rem)] font-bold text-white leading-[0.9] tracking-tighter">
+          Proyectos
+        </h1>
+        <div class="flex items-center gap-4 mt-8">
+            <span class="h-[1px] w-20 bg-white/30"></span>
+            <p class="text-zinc-400 text-sm md:text-base max-w-md">
+                Combinando diseño y código para crear experiencias digitales memorables.
+            </p>
+        </div>
       </div>
+
+      <!-- Projects List -->
+      <div class="projects-list flex flex-col w-full mt-32">
+        {PROJECTS.map((project, index) => (
+            <a href={project.link} target="_blank" class="project-item group relative flex items-center justify-between py-12 border-t border-zinc-900 hover:bg-zinc-900/30 transition-colors duration-500 cursor-none">
+                
+                <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-10 pointer-events-none z-20">
+                    <span class="text-xs font-mono text-zinc-600">0{index + 1}</span>
+                    <h2 class="text-4xl md:text-6xl font-medium text-zinc-300 group-hover:text-white group-hover:translate-x-4 transition-all duration-500 ease-out">
+                        {project.title}
+                    </h2>
+                </div>
+
+                <div class="flex flex-col items-end gap-1 pointer-events-none z-20">
+                    <span class="text-xs md:text-sm text-zinc-500 uppercase tracking-widest group-hover:text-zinc-300 transition-colors">{project.category}</span>
+                    <span class="text-xs font-mono text-zinc-700 group-hover:text-zinc-500 transition-colors">{project.year}</span>
+                </div>
+
+                <!-- Hover Image Reveal (Centered Fixed) -->
+                <div class="project-preview fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] aspect-video opacity-0 pointer-events-none z-50 overflow-hidden rounded-lg hidden md:block mix-blend-normal transition-opacity duration-300">
+                    <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+
+            </a>
+        ))}
+        <div class="w-full h-[1px] bg-zinc-900"></div>
+      </div>
+
     </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="fixed w-3 h-3 bg-white rounded-full pointer-events-none mix-blend-difference z-[60] top-0 left-0 hidden md:block"></div>
+
   </main>
+  <Footer />
 </Layout>
 
-<style>
-  /* --- ESTILOS DE PÁGINA (Similares a Contacto) --- */
-  body {
-    margin: 0;
-    background-color: #000;
-    overflow-x: hidden;
-  }
-
-  .hero-container {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    height: auto; /* Permitir que crezca */
-    overflow: hidden;
-  }
-
-  #particle-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    /* height: 100%; */
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .content-overlay {
-    position: relative;
-    z-index: 2;
-    color: white;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Empezar desde arriba */
-    padding: 6rem 1rem 4rem 1rem; /* Más padding arriba y abajo */
-    min-height: 100vh;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .text-gradient {
-    background: linear-gradient(to right, #7e3af2, #fc6610);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Hacemos la sección de proyectos más ancha que la de contacto */
-  .section-wide {
-    width: 100%;
-    max-width: 1024px; /* Más ancho para el grid */
-    margin: 0 auto;
-    /* Sin el fondo borroso para que las tarjetas destaquen */
-  }
-</style>
-
 <script>
-  import * as THREE from "three";
+  import { gsap } from "../animations/core";
+  
+  document.addEventListener("astro:page-load", () => {
+    
+    const items = document.querySelectorAll('.project-item');
+    const cursor = document.getElementById('cursor-dot');
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("particle-canvas");
-    if (!container) return;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      canvas: container,
+    // 1. Reveal Animation
+    gsap.to(".animate-title", {
+       opacity: 1,
+       y: 0,
+       duration: 1.2,
+       ease: "power3.out"
     });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    camera.position.z = 5;
 
-    // --- ✨ LÓGICA DE GALERÍA (Lenta) ---
-    const particlesCount = 3000;
-    const positions = new Float32Array(particlesCount * 3);
-    for (let i = 0; i < particlesCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 10;
-    }
-
-    const particlesGeometry = new THREE.BufferGeometry();
-    particlesGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(positions, 3)
-    );
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.02,
-      color: 0xffffff,
+    gsap.from(items, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.1,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.3
     });
-    const particleSystem = new THREE.Points(
-      particlesGeometry,
-      particlesMaterial
-    );
-    scene.add(particleSystem);
 
-    function animate() {
-      requestAnimationFrame(animate);
+    // 2. Cursor Physics
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
 
-      // ✨ LA LÓGICA LENTA:
-      // En lugar de moverlas hacia la cámara, las rotamos lentamente.
-      // Esto da una sensación de "galería" o "nebulosa" ambiental.
-      particleSystem.rotation.y += 0.0003;
-      particleSystem.rotation.x += 0.0001;
-
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
-    // --- Responsivo (Igual) ---
-    window.addEventListener("resize", () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    window.addEventListener('mousemove', (e) => {
+        const mouseEvent = e as MouseEvent;
+        mouseX = mouseEvent.clientX;
+        mouseY = mouseEvent.clientY;
     });
+
+    gsap.ticker.add(() => {
+        const dt = 1.0 - Math.pow(1.0 - 0.2, gsap.ticker.deltaRatio());
+        cursorX += (mouseX - cursorX) * dt;
+        cursorY += (mouseY - cursorY) * dt;
+        
+        if(cursor) {
+            gsap.set(cursor, { x: cursorX, y: cursorY, xPercent: -50, yPercent: -50 });
+        }
+    });
+
+    // 3. Hover Effects (Simple Opacity Toggle)
+    items.forEach(item => {
+        const preview = item.querySelector('.project-preview') as HTMLElement;
+        const img = preview?.querySelector('img');
+        
+        item.addEventListener('mouseenter', () => {
+             // Scale up cursor or hide it
+             if(cursor) gsap.to(cursor, { scale: 0, duration: 0.2 });
+             
+             // Show preview (CSS opacity handled by class, but let's ensure it)
+             if(preview) {
+                 preview.style.opacity = '1';
+                 gsap.fromTo(preview, { scale: 0.9 }, { scale: 1, duration: 0.4, ease: "power2.out" });
+             }
+        });
+
+        item.addEventListener('mouseleave', () => {
+             if(cursor) gsap.to(cursor, { scale: 1, duration: 0.2 });
+
+             if(preview) {
+                 preview.style.opacity = '0';
+             }
+        });
+    });
+
   });
 </script>

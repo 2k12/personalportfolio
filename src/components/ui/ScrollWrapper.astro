@@ -1,0 +1,66 @@
+---
+interface Props {
+  class?: string;
+  animation?: "fade" | "slide" | "scale" | "blur";
+  delay?: number;
+}
+
+const { class: className, animation = "fade", delay = 0 } = Astro.props;
+---
+
+<div
+  class={`scroll-reveal ${className}`}
+  data-animation={animation}
+  data-delay={delay}
+>
+  <slot />
+</div>
+
+<script>
+  import { gsap } from "../../animations/core";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  function initScrollReveal() {
+    const elements = document.querySelectorAll(".scroll-reveal");
+
+    elements.forEach((el: HTMLElement) => {
+      if (el.dataset.processed) return;
+      el.dataset.processed = "true";
+
+      const animation = el.dataset.animation;
+      const delay = parseFloat(el.dataset.delay || "0");
+
+      let vars = {};
+
+      switch (animation) {
+        case "slide":
+          vars = { y: 50, opacity: 0 };
+          break;
+        case "scale":
+          vars = { scale: 0.8, opacity: 0 };
+          break;
+        case "blur":
+          vars = { filter: "blur(10px)", opacity: 0 };
+          break;
+        case "fade":
+        default:
+          vars = { opacity: 0 };
+      }
+
+      gsap.from(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+        duration: 0.8,
+        ease: "power3.out",
+        delay: delay,
+        ...vars,
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initScrollReveal);
+  document.addEventListener("DOMContentLoaded", initScrollReveal);
+</script>

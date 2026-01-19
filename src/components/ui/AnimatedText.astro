@@ -1,0 +1,122 @@
+---
+interface Props {
+  tag?: string;
+  class?: string;
+  strategy?: "lines" | "words" | "chars" | "zoom";
+  delay?: number;
+}
+
+const {
+  tag = "div",
+  class: className,
+  strategy = "lines",
+  delay = 0,
+} = Astro.props;
+const Tag = tag;
+---
+
+<Tag
+  class={`animated-text opacity-0 ${className}`}
+  data-strategy={strategy}
+  data-delay={delay}
+>
+  <slot />
+</Tag>
+
+<script>
+  import { gsap } from "../../animations/core";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  // Función simple para dividir texto (alternativa a SplitText de pago)
+  function splitText(element, type) {
+    const text = element.innerText;
+    element.innerHTML = "";
+
+    if (type === "chars") {
+      [...text].forEach((char) => {
+        const span = document.createElement("span");
+        span.style.display = "inline-block";
+        span.textContent = char === " " ? "\u00A0" : char;
+        element.appendChild(span);
+      });
+      return element.children;
+    } else if (type === "words") {
+      const words = text.split(" ");
+      words.forEach((word, i) => {
+        const span = document.createElement("span");
+        span.style.display = "inline-block";
+        span.textContent = word + (i < words.length - 1 ? "\u00A0" : "");
+        element.appendChild(span);
+      });
+      return element.children;
+    }
+    // Default lines (simulado wrapping words in spans and letting them break)
+    // Para líneas reales se necesita lógica compleja o SplitText plugin.
+    // Usaremos un reveal simple de bloque para "lines" por ahora si no hay plugin.
+    element.innerText = text;
+    return [element];
+  }
+
+  function initAnimations() {
+    const elements = document.querySelectorAll(".animated-text");
+
+    elements.forEach((el: HTMLElement) => {
+      // Evitar re-animar si ya se procesó
+      if (el.dataset.processed) return;
+      el.dataset.processed = "true";
+
+      const strategy = el.dataset.strategy;
+      const delay = parseFloat(el.dataset.delay || "0");
+
+      gsap.set(el, { opacity: 1 }); // Hacer visible para manipular
+
+      if (strategy === "chars") {
+        const chars = splitText(el, "chars");
+        gsap.from(chars, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+          y: 50,
+          opacity: 0,
+          rotationX: -90,
+          stagger: 0.02,
+          duration: 1,
+          ease: "back.out(1.7)",
+          delay: delay,
+        });
+      } else if (strategy === "words") {
+        const words = splitText(el, "words");
+        gsap.from(words, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+          y: 20,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: delay,
+        });
+      } else {
+        // Simple fade up for lines/block
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+          delay: delay,
+        });
+      }
+    });
+  }
+
+  // Ejecutar en carga inicial y navegación
+  document.addEventListener("astro:page-load", initAnimations);
+  document.addEventListener("DOMContentLoaded", initAnimations);
+</script>

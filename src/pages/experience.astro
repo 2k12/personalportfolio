@@ -1,368 +1,124 @@
 ---
-// 1. Importamos tu array de experiencias
-import { EXPERIENCE } from "../components/Experience.astro";
-import SectionContainer from "../components/SectionContainer.astro";
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+// import ExperienceList from "../components/Experience.astro"; // Usaremos una versión in-line más minimalista O adaptamos el componente.
+// Para control total 'Ultra Minimalist', lo haré in-line aquí.
+
+const EXPERIENCE = [
+  {
+    company: "Easy Ecommerce",
+    role: "Full Stack Developer",
+    date: "2023 - Presente",
+    description: "Desarrollador Full Stack en Easy Ecommerce es una plataforma completa de comercio electrónico que ofrece a los usuarios la capacidad de crear, administrar y hacer crecer tiendas en línea de manera fácil y eficiente. Con una interfaz intuitiva y potentes herramientas integradas, Easy Ecommerce permite personalizar tiendas, gestionar inventarios y procesar pagos fácilmente.",
+    tech: ["Flutter", "PHP", "Go", "Node JS"]
+  },
+  // {
+  //   company: "TechSolutions Inc.",
+  //   role: "Frontend Intern",
+  //   date: "2023 - 2024",
+  //   description: "Colaboración en el rediseño de la interfaz de usuario de la plataforma principal. Implementación de componentes accesibles.",
+  //   tech: ["Vue", "TailwindCSS"]
+  // },
+  // {
+  //   company: "Hackathon Winner",
+  //   role: "Lead Developer",
+  //   date: "2023",
+  //   description: "Lideré el equipo de desarrollo para crear una solución de impacto social en 48 horas.",
+  //   tech: ["Python", "React Native"]
+  // }
+];
 ---
 
 <Layout
-  title="Portfolio Joan - Desarrollador Web"
-  description="Hola! Soy Joan Pastillo, un apasionado desarrollador full stack con +5 meses de experiencia creando soluciones digitales robustas y escalables."
+  title="Experience | Joan"
+  description="My professional journey."
 >
-  <main>
-    <div class="hero-container">
-      <canvas id="particle-canvas"></canvas>
-
-      <div class="content-overlay" data-experience={JSON.stringify(EXPERIENCE)}>
-        <SectionContainer id="experiencia" class="section">
-          <!-- <h2
-            class="text-4xl font-semibold mb-6 flex gap-x-3 items-center text-gradient justify-center"
-          >
-            Experiencia Profesional
-          </h2> -->
-          <div id="experience-preview"></div>
-        </SectionContainer>
+  <main class="bg-black min-h-screen relative w-full selection:bg-white selection:text-black">
+    
+    <div class="relative max-w-5xl mx-auto px-6 pt-32 pb-20 z-10">
+      
+      <!-- Minimalist Header -->
+      <div class="mb-32 opacity-0 animate-title">
+        <h1 class="text-[clamp(3.5rem,10vw,9rem)] font-bold text-white leading-[0.9] tracking-tighter">
+          Experiencia
+        </h1>
       </div>
+
+      <!-- Experience Timeline (Ultra Minimal) -->
+      <div class="relative border-l border-zinc-800 ml-2 md:ml-0 md:pl-10 space-y-20">
+        
+        {EXPERIENCE.map((exp, index) => (
+            <div class="experience-item relative pl-8 md:pl-0 opacity-0">
+                <!-- Dot visual -->
+                <div class="absolute -left-[5px] md:-left-[45px] top-2 w-2.5 h-2.5 bg-white rounded-full ring-4 ring-black"></div>
+                
+                <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-4">
+                    <h2 class="text-3xl md:text-5xl font-medium text-white tracking-tight">
+                        {exp.company}
+                    </h2>
+                    <span class="font-mono text-zinc-500 text-sm md:text-base">{exp.date}</span>
+                </div>
+
+                <div class="md:grid md:grid-cols-4 gap-8">
+                    <div class="col-span-1">
+                        <span class="text-lg text-zinc-300 block mb-2">{exp.role}</span>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            {exp.tech.map(t => (
+                                <span class="text-[10px] uppercase tracking-wider text-zinc-600 border border-zinc-800 px-2 py-1 rounded-full">{t}</span>
+                            ))}
+                        </div>
+                    </div>
+                    <div class="col-span-3 mt-4 md:mt-0">
+                        <p class="text-zinc-400 leading-relaxed text-lg max-w-2xl">
+                            {exp.description}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        ))}
+
+      </div>
+
     </div>
+
   </main>
+  <Footer />
 </Layout>
 
-<style>
-  body {
-    margin: 0;
-    background-color: #000;
-    overflow-x: hidden;
-  }
-
-  .hero-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  #particle-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    /* Aseguramos que el canvas no capture clics */
-    pointer-events: none;
-  }
-
-  .content-overlay {
-    position: relative;
-    z-index: 2;
-    color: white;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    padding: 2rem;
-  }
-
-  .text-gradient {
-    background: linear-gradient(to right, #7e3af2, #fc6610);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  #experience-preview {
-    display: none;
-    position: absolute; /* JS controlará top/left en desktop */
-    /* transform: translate(-50%, -100%); <-- ELIMINADO, causaba conflicto */
-    min-width: 260px;
-    max-width: 320px;
-    background: rgba(20, 20, 20, 0.75);
-    border: 1px solid #7e3af2;
-    border-radius: 12px;
-    padding: 1rem 1.25rem;
-    text-align: left;
-    z-index: 100;
-    backdrop-filter: blur(8px);
-    color: white;
-    opacity: 0;
-    /* Transición solo para opacidad en desktop */
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    box-shadow: 0 8px 20px rgba(126, 58, 242, 0.3);
-  }
-
-  /* Mostrar con efecto de aparición */
-  #experience-preview.visible {
-    display: block;
-    opacity: 1;
-    /* transform: translate(-50%, -110%) scale(1.02); */
-    /* animation: floaty 2s ease-in-out infinite alternate; */
-  }
-
-  /*  */
-  /* --- ✨ NUEVA SECCIÓN RESPONSIVE ✨ --- */
-  @media (max-width: 768px) {
-    #experience-preview {
-      /* Fijo en la parte inferior de la pantalla */
-      position: fixed;
-
-      /* Anulamos cualquier 'style' de JS */
-      left: 50% !important;
-      top: auto !important;
-      bottom: 1rem; /* Margen inferior */
-
-      /* Ancho responsive */
-      width: 90vw;
-      max-width: 500px;
-      min-width: 0;
-
-      /* Animación de entrada/salida */
-      opacity: 0;
-      transform: translate(-50%, 20px); /* Empieza centrado y abajo */
-      transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
-    }
-
-    #experience-preview.visible {
-      opacity: 1;
-      transform: translate(-50%, 0); /* Posición final */
-    }
-  }
-</style>
-
 <script>
-  import * as THREE from "three";
+  import { gsap } from "../animations/core";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  document.addEventListener("DOMContentLoaded", () => {
-    // 5. Obtener los contenedores y los datos
-    const container = document.getElementById("particle-canvas");
-    const contentOverlay = document.querySelector(".content-overlay");
-    const previewContainer = document.getElementById("experience-preview");
+  gsap.registerPlugin(ScrollTrigger);
+  
+  document.addEventListener("astro:page-load", () => {
+    
+    // 1. Reveal Title
+    gsap.to(".animate-title", {
+       opacity: 1,
+       y: 0,
+       duration: 1.2,
+       ease: "power3.out"
+    });
 
-    if (!container || !contentOverlay || !previewContainer) {
-      console.error("Faltan elementos esenciales del DOM.");
-      return;
-    }
-
-    // 6. Parsear los datos de experiencia desde el atributo data-*
-    let experienceData: any[] = [];
-    try {
-      const raw = (contentOverlay as HTMLElement).dataset.experience;
-      if (!raw) {
-        console.warn(
-          "No experience data found in data-experience attribute. Using empty array."
+    // 2. Timeline Reveal
+    const items = gsap.utils.toArray<HTMLElement>(".experience-item");
+    items.forEach(item => {
+        gsap.fromTo(item, 
+            { opacity: 0, x: -30 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            }
         );
-        experienceData = [];
-      } else {
-        experienceData = JSON.parse(raw);
-      }
-    } catch (e) {
-      console.error("Error al parsear los datos de experiencia:", e);
-      return;
-    }
-
-    // --- Configuración de THREE.js ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    // Hacemos que el canvas del renderer SÍ capture eventos de mouse
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      canvas: container, // Usamos el canvas existente
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    // Ya no usamos container.appendChild(renderer.domElement);
-
-    camera.position.z = 6;
-
-    // 🌌 Fondo de partículas (sin cambios)
-    const particlesCount = 2500;
-    const positions = new Float32Array(particlesCount * 3);
-    for (let i = 0; i < particlesCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 15;
-    }
-    const particlesGeometry = new THREE.BufferGeometry();
-    particlesGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(positions, 3)
-    );
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.02,
-      color: 0xffffff,
-    });
-    const particleSystem = new THREE.Points(
-      particlesGeometry,
-      particlesMaterial
-    );
-    scene.add(particleSystem);
-
-    // ☀️ Luz suave (sin cambios)
-    const light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(5, 5, 5);
-    scene.add(light);
-
-    // 7. Setup de Raycaster para clicks
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
-    let selectedPlanet: THREE.Mesh | null = null; // Rastrear el planeta seleccionado
-
-    // 🌍 Crear planetas (basado en los datos)
-    const colors = [0xfc6610, 0x7e3af2, 0x00ffff, 0x10fc61];
-    const planets: THREE.Mesh[] = []; // Array para guardar los meshes de los planetas
-
-    // 8. Usar experienceData.forEach en lugar de 'for (let i = 0; i < 4; i++)'
-    experienceData.forEach((exp: any, i: number) => {
-      const geometry = new THREE.SphereGeometry(0.25 + i * 0.05, 32, 32);
-      const material = new THREE.MeshStandardMaterial({
-        color: colors[i % colors.length],
-        emissive: colors[i % colors.length],
-        emissiveIntensity: 0.5,
-        roughness: 0.4,
-      });
-      const planet = new THREE.Mesh(geometry, material);
-
-      const radius = 1.5 + i;
-      const angle = (i / experienceData.length) * Math.PI * 2;
-      planet.position.x = Math.cos(angle) * radius;
-      planet.position.y = Math.sin(angle) * (0.8 + i * 0.2);
-
-      // 9. Guardar los datos y velocidad original en el planeta
-      planet.userData = {
-        id: i,
-        data: exp,
-        radius: radius,
-        originalSpeed: 0.3 + i * 0.1,
-      };
-
-      planets.push(planet);
-      scene.add(planet);
     });
 
-    // 🎞️ Animación
-    const clock = new THREE.Clock();
-    function animate() {
-      requestAnimationFrame(animate);
-      const elapsed = clock.getElapsedTime();
-
-      particleSystem.rotation.y = elapsed * 0.05;
-
-      // 10. Modificar la animación para detener el planeta seleccionado
-      planets.forEach((p) => {
-        const data = p.userData;
-        let currentSpeed = data.originalSpeed;
-
-        if (selectedPlanet === p) {
-          currentSpeed = 0; // Detener el planeta
-          // Opcional: rotar lentamente sobre sí mismo
-          p.rotation.y += 0.005;
-        }
-
-        if (currentSpeed > 0) {
-          const angle = elapsed * currentSpeed + data.id;
-          p.position.x = Math.cos(angle) * data.radius;
-          p.position.y = Math.sin(angle) * (data.radius * 0.5);
-          p.rotation.y += 0.01;
-        }
-      });
-
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    // 📱 Responsivo
-    window.addEventListener("resize", () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    });
-
-    window.addEventListener("click", (event) => {
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-      raycaster.setFromCamera(mouse, camera);
-
-      const intersects = raycaster.intersectObjects(planets);
-
-      if (intersects.length > 0) {
-        const clickedPlanet = intersects[0].object as THREE.Mesh;
-
-        if (selectedPlanet === clickedPlanet) {
-          // Si ya está seleccionado, cerramos el popup
-          selectedPlanet = null;
-          previewContainer.classList.remove("visible");
-          return;
-        }
-
-        selectedPlanet = clickedPlanet;
-        const data = clickedPlanet.userData.data;
-
-        // 🧾 Contenido de la tarjeta
-        previewContainer.innerHTML = `
-          <h3 class="text-gradient text-lg">${data.title}</h3>
-          <h4 class="text-gray-400 text-md">${data.job} (${data.date})</h4>
-          <p>${data.description}</p>
-        `;
-
-        // ✨ --- LÓGICA RESPONSIVE --- ✨
-        const isMobile = window.innerWidth <= 768;
-
-        if (isMobile) {
-          // En móvil, la CSS (media query) se encarga de todo.
-          // Nos aseguramos de limpiar estilos 'inline' por si el usuario
-          // redimensiona la ventana de desktop a móvil.
-          previewContainer.style.left = "";
-          previewContainer.style.top = "";
-        } else {
-          // En desktop, usamos tu lógica de posicionar junto al cursor
-
-          // 📏 Tamaños estimados (los que tenías)
-          const cardWidth = 300;
-          const cardHeight = 180;
-
-          let x = event.clientX;
-          let y = event.clientY;
-
-          // 📍 Determinar espacio (arriba/abajo)
-          const spaceAbove = event.clientY;
-          const spaceBelow = window.innerHeight - event.clientY;
-
-          if (spaceBelow < cardHeight + 20 && spaceAbove > cardHeight + 20) {
-            // Mostrar arriba
-            y = event.clientY - cardHeight - 20;
-          } else {
-            // Mostrar abajo
-            y = event.clientY + 20;
-          }
-
-          // 🔸 Ajustar para no salirse por los lados
-          // (Centra la tarjeta en el cursor)
-          let centeredX = x - cardWidth / 2;
-
-          // Ajuste borde izquierdo
-          centeredX = Math.max(20, centeredX);
-          // Ajuste borde derecho
-          centeredX = Math.min(centeredX, window.innerWidth - cardWidth - 20);
-
-          x = centeredX;
-
-          // 📍 Aplicar posición segura
-          previewContainer.style.left = `${x}px`;
-          previewContainer.style.top = `${y}px`;
-        }
-
-        // Mostrar tarjeta (común para ambos)
-        previewContainer.classList.add("visible");
-      } else {
-        selectedPlanet = null;
-        previewContainer.classList.remove("visible");
-      }
-    });
   });
 </script>

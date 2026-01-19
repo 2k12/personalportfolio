@@ -1,25 +1,55 @@
-<footer class="rounded-lg shadow m-4 dark:bg-gray-800">
+---
+import GitHubIcon from "../icons/GitHub.astro";
+import LinkedInIcon from "../icons/LinkedIn.astro";
+import MailIcon from "../icons/Mail.astro";
+---
+
+<footer class="bg-zinc-950 border-t border-white/5 py-12 px-6">
   <div
-    class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-center"
+    class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8"
   >
-    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
-      >© 2024 | Todos los Derechos Reservados. | Joan Pastillo
-    </span>
-    <!-- <ul
-      class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
-    >
-      <li>
-        <a href="#" class="hover:underline me-4 md:me-6">About</a>
-      </li>
-      <li>
-        <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
-      </li>
-      <li>
-        <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-      </li>
-      <li>
-        <a href="#" class="hover:underline">Contact</a>
-      </li>
-    </ul> -->
+    <div class="text-center md:text-left">
+      <a
+        href="/"
+        class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-orange-400 mb-2 inline-block"
+      >
+        Joan Pastillo
+      </a>
+      <p class="text-zinc-500 text-sm max-w-xs">
+        Creando experiencias digitales excepcionales.
+      </p>
+    </div>
+
+    <nav class="flex gap-6">
+      <a
+        href="https://github.com/2k12"
+        target="_blank"
+        aria-label="GitHub"
+        class="text-zinc-400 hover:text-white transition-colors"
+      >
+        <GitHubIcon class="w-6 h-6" />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/joan-francisco-pastillo-donoso-7823272a1"
+        target="_blank"
+        aria-label="LinkedIn"
+        class="text-zinc-400 hover:text-white transition-colors"
+      >
+        <LinkedInIcon class="w-6 h-6" />
+      </a>
+      <a
+        href="mailto:jeipige@gmail.com"
+        aria-label="Email"
+        class="text-zinc-400 hover:text-white transition-colors"
+      >
+        <MailIcon class="w-6 h-6" />
+      </a>
+    </nav>
+  </div>
+
+  <div
+    class="max-w-6xl mx-auto mt-8 pt-8 border-t border-white/5 text-center text-zinc-600 text-xs"
+  >
+    © 2024 Joan Pastillo. Todos los derechos reservados.
   </div>
 </footer>

@@ -1,502 +1,200 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SectionContainer from "../components/SectionContainer.astro";
+import Footer from "../components/Footer.astro";
 
 // --- 1. GESTIÓN DEL CONTENIDO ---
-// Añade aquí todas tus actividades.
-// El 'type' cambiará el color del icono en el timeline.
 const ACTIVITIES = [
-  //   {
-  //     type: "Ponencia", // 'Ponencia' o 'Evento'
-  //     title: "IA Generativa en el Desarrollo Web Moderno",
-  //     description:
-  //       "Una charla sobre el impacto de la IA en los flujos de trabajo de frontend y backend, presentada en la Conferencia de Tecnología de 2024.",
-  //     date: "Octubre 2024",
-  //     place: "Universidad Técnica del Norte - UTN, Ecuador.",
-  //     image: "/activities/ponencia_ia.webp", // Reemplaza con tu imagen
-  //   },
   {
     type: "Evento",
     title: "Participación en 'Semilleros UTN'",
     description:
-      "Miembro del equipo ganador del 3er Lugar, desarrollando una Plataforma tecnológica para promover la participación estudiantil mediante una Moneda Virtual.",
+      "3er Lugar. Desarrollo de Plataforma tecnológica con Moneda Virtual para participación estudiantil.",
     date: "Agosto 2025",
-    place: "Universidad Técnica del Norte (UTN), Ecuador.",
-    image: "/activities/sem_25.jpeg", // Reemplaza con tu imagen
+    place: "UTN, Ecuador",
+    image: "/activities/sem_25.jpeg",
+    objectPosition: "center top", // Updated specifically
   },
   {
     type: "Ponencia",
-    title:
-      "Participación en el IV Congreso Internacional de Semilleros de Investigación e Innovación.",
+    title: "IV Congreso Internacional de Semilleros",
     description:
-      "Ponencia “Plataforma tecnológica para promover la participación estudiantil en los procesos universitarios mediante una moneda virtual”.",
+      "Ponencia sobre Plataformas tecnológicas y criptoactivos en ecosistemas universitarios.",
     date: "Octubre 2025",
-    place: "Universidad Privada Antenor Orrego (UPAO), Perú.",
-    image: "/activities/upao_25.jpeg", // Reemplaza con tu imagen
+    place: "UPAO, Perú",
+    image: "/activities/upao_25.jpeg",
   },
   {
-    type: "Ponencia",
-    title: "Participación en INNOVATECH IV Edición 2025",
+    type: "Evento",
+    title: "INNOVATECH IV Edición 2025",
     description:
-      "Integrante del equipo representante de la carrera de Ingeniería de Software, encargado del desarrollo de una plataforma tecnológica orientada a fomentar la participación estudiantil mediante el uso de una moneda virtual.",
+      "Representante de Ingeniería de Software. Innovación en sistemas de incentivos académicos.",
     date: "Noviembre 2025",
-    place: "Universidad Técnica de Manabí (UTM), Ecuador.",
+    place: "UTM, Ecuador",
     image: "/activities/innovatech_25.jpeg",
   },
-
-  // ... añade más actividades aquí
 ];
-
-// --- Iconos para el Timeline (Diseño UI) ---
-const ICONS = {
-  Ponencia: `
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125H10.5m0-11.25H13.5m0-3.375a1.125 1.125 0 0 1 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125H10.5m0-1.125h3.375c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-3.375M3.375 19.5c.621 0 1.125-.504 1.125-1.125v-11.25c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125Z" />
-    </svg>
-  `,
-  Evento: `
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-    </svg>
-  `,
-};
 ---
 
 <Layout
-  title="Portfolio Joan - Actividades"
-  description="Explora mi trayectoria, ponencias y participación en eventos."
+  title="Activities | Joan"
+  description="Trayectoria y eventos."
 >
-  <main>
-    <div class="hero-container">
-      <canvas id="particle-canvas"></canvas>
+  <main class="bg-black min-h-screen relative overflow-hidden selection:bg-white selection:text-black">
+    
+    <!-- Header Minimalista -->
+    <header class="fixed top-0 left-0 w-full z-40 mix-blend-difference px-6 py-8 pointer-events-none">
+       <!-- El header global ya está ahí, esto es solo spacer si es necesario o título de sección -->
+    </header>
 
-      <div class="content-overlay">
-        <div
-          id="lobby-content"
-          class="text-center transition-opacity duration-1000"
-        >
-          <SectionContainer
-            id="lobby"
-            class="flex flex-col items-center justify-center min-h-[80vh]"
-          >
-            <!-- <h1 class="text-5xl md:text-7xl font-bold text-gradient mb-4">
-              Mi Trayectoria
-            </h1> -->
-            <!-- <p class="text-xl md:text-2xl text-white/80">Neurodanza</p> -->
-          </SectionContainer>
-        </div>
+    <div class="relative w-full max-w-5xl mx-auto px-6 pt-32 pb-20 z-10">
+      
+      <!-- Título Grande -->
+      <h1 class="text-[clamp(3rem,8vw,8rem)] font-bold text-white leading-[0.9] tracking-tighter mb-24 opacity-0 animate-title">
+        <!-- Selected<br/>Activities. -->
+        Actividades 
+      </h1>
 
-        <div
-          id="activities-list"
-          class="opacity-0 pointer-events-none transition-opacity duration-1000 delay-500"
-        >
-          <SectionContainer id="timeline-section" class="section-wide">
-            <div class="timeline-container">
-              {
-                ACTIVITIES.map((activity, index) => (
-                  <div class="timeline-item">
-                    <div class="timeline-content-wrapper">
-                      <div
-                        class:list={[
-                          "timeline-icon",
-                          activity.type === "Ponencia"
-                            ? "icon-ponencia"
-                            : "icon-evento",
-                        ]}
-                      >
-                        <Fragment
-                          set:html={ICONS[activity.type as keyof typeof ICONS]}
-                        />
-                      </div>
-
-                      <article class="timeline-card">
-                        <img
-                          src={activity.image}
-                          alt={`Imagen de ${activity.title}`}
-                          class="card-image"
-                          loading="lazy"
-                        />
-                        <div class="card-content">
-                          <span class="card-date">{activity.date}</span>
-                          <h3 class="card-title">{activity.title}</h3>
-                          <p class="card-description">{activity.description}</p>
-                          <span class="card-place">{activity.place}</span>
-                        </div>
-                      </article>
-                    </div>
+      <!-- Lista de Actividades -->
+      <div class="activities-wrapper flex flex-col gap-y-32">
+        {
+          ACTIVITIES.map((activity, index) => (
+            <div class="activity-item group relative flex flex-col md:flex-row gap-10 md:items-start opacity-0" data-speed={1 + index * 0.1}>
+              
+              <!-- Info (Sticky en desktop para efecto parallax) -->
+              <div class="md:w-1/3 md:sticky md:top-40 self-start">
+                  <span class="block text-xs font-mono text-zinc-500 mb-4 tracking-widest uppercase">{activity.date} — {activity.place}</span>
+                  <h2 class="text-3xl md:text-4xl font-medium text-white mb-6 group-hover:text-zinc-300 transition-colors">
+                    {activity.title}
+                  </h2>
+                  <div class="h-[1px] w-12 bg-white/20 my-6 group-hover:w-full transition-all duration-700 ease-out"></div>
+                  <p class="text-zinc-400 text-sm leading-relaxed max-w-xs text-balance">
+                    {activity.description}
+                  </p>
+                  <div class="mt-4">
+                     <span class="inline-block px-3 py-1 border border-white/10 rounded-full text-[10px] text-white/60 uppercase tracking-widest backdrop-blur-md">
+                        {activity.type}
+                     </span>
                   </div>
-                ))
-              }
+              </div>
+
+              <!-- Imagen con Efecto Reveal -->
+              <div class="md:w-2/3 relative overflow-hidden rounded-sm cursor-none image-container">
+                <div class="overlay absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                <!-- Imagen con parllax interno -->
+                 <img
+                    src={activity.image}
+                    alt={activity.title}
+                    class="w-full h-[60vh] object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 ease-out scale-105 group-hover:scale-100"
+                    loading="lazy"
+                    style={{ objectPosition: (activity as any).objectPosition || "center" }}
+                  />
+              </div>
+
             </div>
-          </SectionContainer>
-        </div>
+          ))
+        }
       </div>
     </div>
+
+    <!-- Mouse Follower Custom -->
+    <div id="cursor-circle" class="fixed w-4 h-4 bg-white rounded-full pointer-events-none mix-blend-difference z-50 top-0 left-0 hidden md:block"></div>
+
   </main>
+  
+  <Footer />
 </Layout>
 
-<style>
-  /* --- 2. ESTILOS DE PÁGINA Y 3D --- */
-  body {
-    margin: 0;
-    background-color: #000;
-    overflow-x: hidden;
-  }
-
-  .hero-container {
-    position: relative;
-    width: 100%;
-    /* Permitimos que crezca con el contenido del timeline */
-    min-height: 100vh;
-    height: auto;
-    overflow: hidden;
-  }
-
-  #particle-canvas {
-    position: fixed; /* FIJO para que se quede de fondo */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh; /* Ocupa toda la ventana */
-    z-index: 0;
-    pointer-events: auto; /* PERMITE CLICS */
-    cursor: pointer; /* Indica que es interactivo */
-  }
-
-  .content-overlay {
-    position: relative;
-    z-index: 2;
-    padding: 6rem 1rem 4rem 1rem;
-    width: 100%;
-    box-sizing: border-box;
-    /* Necesario para que el lobby se centre */
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Oculta la lista de actividades al inicio */
-  #activities-list.opacity-0 {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(20px);
-  }
-
-  /* Muestra la lista de actividades post-animación */
-  #activities-list.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0px);
-  }
-
-  .text-gradient {
-    background: linear-gradient(to right, #7e3af2, #fc6610);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .section-wide {
-    width: 100%;
-    max-width: 1024px;
-    margin: 0 auto;
-  }
-
-  /* --- 3. ESTILOS DEL TIMELINE (UX/UI) --- */
-
-  .timeline-container {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 0;
-  }
-
-  /* La línea vertical central (solo en desktop) */
-  @media (min-width: 768px) {
-    .timeline-container::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      margin-left: -2px;
-      background: linear-gradient(to bottom, #7e3af2, #fc6610, #7e3af2);
-      border-radius: 2px;
-      opacity: 0.3;
-    }
-  }
-
-  .timeline-item {
-    position: relative;
-    width: 100%;
-    padding: 1rem 0;
-    margin-bottom: 2rem;
-  }
-
-  /* Posicionamiento de items (alternado en desktop) */
-  @media (min-width: 768px) {
-    .timeline-item {
-      width: 50%;
-      padding: 1rem 2rem;
-      padding-right: 3rem;
-    }
-    /* Item Izquierdo */
-    .timeline-item:nth-child(odd) {
-      left: 0;
-      text-align: right;
-    }
-    /* Item Derecho */
-    .timeline-item:nth-child(even) {
-      left: 50%;
-      padding-left: 3rem;
-      padding-right: 2rem;
-    }
-  }
-
-  .timeline-content-wrapper {
-    position: relative;
-  }
-
-  /* El icono en el centro */
-  .timeline-icon {
-    position: absolute;
-    z-index: 10;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(5px);
-    border: 2px solid;
-    /* Posición por defecto (móvil) */
-    top: 0;
-    left: 0;
-  }
-
-  .icon-ponencia {
-    border-color: #7e3af2;
-    color: #7e3af2;
-  }
-  .icon-evento {
-    border-color: #fc6610;
-    color: #fc6610;
-  }
-
-  @media (min-width: 768px) {
-    .timeline-icon {
-      display: flex;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    /* Icono Izquierdo */
-    .timeline-item:nth-child(odd) .timeline-icon {
-      right: -25px; /* (Mitad del icono) - 3rem (padding) */
-      left: auto;
-      transform: translate(50%, -50%);
-    }
-    /* Icono Derecho */
-    .timeline-item:nth-child(even) .timeline-icon {
-      left: -25px; /* (Mitad del icono) - 3rem (padding) */
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  /* La tarjeta de contenido */
-  .timeline-card {
-    background: rgba(20, 20, 20, 0.5); /* Glassmorphism */
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(126, 58, 242, 0.3);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    /* Padding para móvil */
-    /* padding-top: 60px;  */
-    padding-top: 0; /* Espacio para el icono en móvil */
-  }
-
-  .timeline-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(126, 58, 242, 0.7);
-    box-shadow: 0 10px 30px rgba(126, 58, 242, 0.2);
-  }
-
-  .card-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    object-position: center top; /* 🔹 centra la imagen */
-    border-bottom: 1px solid rgba(126, 58, 242, 0.3);
-  }
-
-  .card-content {
-    padding: 1.5rem;
-    text-align: left; /* Siempre a la izquierda para legibilidad */
-  }
-
-  .card-date {
-    display: block;
-    font-size: 0.875rem;
-    color: #fc6610; /* Color acento */
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-  .card-place {
-    display: block;
-    font-size: 0.875rem;
-    color: #908d8b; /* Color acento */
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    margin-top: 1rem;
-  }
-
-  .card-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 0.75rem;
-  }
-
-  .card-description {
-    font-size: 1rem;
-    color: white;
-    line-height: 1.6;
-  }
-</style>
-
 <script>
-  // --- 4. LÓGICA DE THREE.JS (El Mundo) ---
-  import * as THREE from "three";
+  import { gsap } from "../animations/core";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("particle-canvas");
-    if (!container) return;
-
-    // --- Configuración Básica ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      canvas: container,
+  document.addEventListener("astro:page-load", () => {
+    
+    // 1. Reveal Título
+    gsap.to(".animate-title", {
+       opacity: 1,
+       y: 0,
+       duration: 1.5,
+       ease: "power4.out",
+       yPercent: 50
     });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    camera.position.z = 5;
 
-    // --- Lógica de Partículas (Ambiental) ---
-    const particlesCount = 3000;
-    const positions = new Float32Array(particlesCount * 3);
-    for (let i = 0; i < particlesCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 10;
-    }
+    // 2. Actividades (Physics / Parallax)
+    const items = gsap.utils.toArray<HTMLElement>(".activity-item");
 
-    const particlesGeometry = new THREE.BufferGeometry();
-    particlesGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(positions, 3)
-    );
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.02,
-      color: 0xffffff,
-      opacity: 1, // Opacidad inicial
-      transparent: true, // Necesario para desvanecer
-    });
-    const particleSystem = new THREE.Points(
-      particlesGeometry,
-      particlesMaterial
-    );
-    scene.add(particleSystem);
+    items.forEach((item, i) => {
+        // Reveal inicial simple
+        gsap.fromTo(item, 
+          { opacity: 0, y: 100 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              end: "top 50%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
 
-    // --- El Mundo Central ---
-    const planetGeometry = new THREE.SphereGeometry(1.5, 32, 32);
-    // Usamos Wireframe para el "tono" tecnológico que pediste.
-    // El color morado conecta con tu marca.
-    const planetMaterial = new THREE.MeshBasicMaterial({
-      color: 0x7e3af2,
-      wireframe: true,
-    });
-    const planet = new THREE.Mesh(planetGeometry, planetMaterial);
-    scene.add(planet);
-
-    // --- Lógica de Interacción (Raycaster) ---
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
-    let explorationTriggered = false; // Flag para evitar múltiples clics
-    const targetScale = new THREE.Vector3(50, 50, 50); // Escala final del planeta
-
-    const lobbyContent = document.getElementById("lobby-content");
-    const activitiesList = document.getElementById("activities-list");
-
-    function onPlanetClick(event: MouseEvent) {
-      if (explorationTriggered) return; // No hacer nada si ya se clickeó
-
-      // Calcular posición del mouse para el Raycaster
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-      raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObjects([planet]);
-
-      // ¡Se hizo clic en el planeta!
-      if (intersects.length > 0) {
-        explorationTriggered = true; // Activar la animación
-        if (container) container.style.cursor = "default"; // Restaurar cursor
-
-        // Ocultar Lobby (UX)
-        if (lobbyContent) lobbyContent.style.opacity = "0";
-
-        // Mostrar Timeline (UX)
-        if (activitiesList) activitiesList.classList.add("is-visible");
-      }
-    }
-
-    window.addEventListener("click", onPlanetClick);
-
-    // --- Bucle de Animación ---
-    function animate() {
-      requestAnimationFrame(animate);
-
-      if (explorationTriggered) {
-        // --- Estado 2: Animación de "Exploración" ---
-
-        // 1. Expandir el planeta
-        planet.scale.lerp(targetScale, 0.03); // 'lerp' para suavidad
-
-        // 2. Girar el planeta (ahora es el fondo)
-        planet.rotation.y += 0.0005;
-        planet.rotation.x += 0.0002;
-
-        // 3. Desvanecer las partículas
-        if (particlesMaterial.opacity > 0) {
-          particlesMaterial.opacity -= 0.01; // Desvanecimiento suave
+        // Efecto Parallax en la imagen interna
+        const img = item.querySelector("img");
+        if (img) {
+          gsap.fromTo(img,
+            { yPercent: -15 },
+            {
+              yPercent: 15,
+              ease: "none",
+              scrollTrigger: {
+                trigger: item,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+              }
+            }
+          );
         }
-      } else {
-        // --- Estado 1: Animación de "Lobby" ---
+    });
 
-        // Rotación ambiental lenta
-        particleSystem.rotation.y += 0.0003;
-        particleSystem.rotation.x += 0.0001;
-        planet.rotation.y += 0.001;
-      }
+    // 3. Custom Cursor Physics
+    const cursor = document.getElementById("cursor-circle");
+    const imageContainers = document.querySelectorAll(".image-container");
 
-      renderer.render(scene, camera);
+    if (cursor) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        window.addEventListener("mousemove", (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Físicas del cursor (Lerp)
+        gsap.ticker.add(() => {
+            const dt = 1.0 - Math.pow(1.0 - 0.15, gsap.ticker.deltaRatio());
+            cursorX += (mouseX - cursorX) * dt;
+            cursorY += (mouseY - cursorY) * dt;
+            
+            gsap.set(cursor, { x: cursorX, y: cursorY, xPercent: -50, yPercent: -50 });
+        });
+
+        // Hover Effect en imágenes
+        imageContainers.forEach(container => {
+           container.addEventListener("mouseenter", () => {
+              gsap.to(cursor, { scale: 4, duration: 0.3, ease: "power2.out" });
+           });
+           container.addEventListener("mouseleave", () => {
+              gsap.to(cursor, { scale: 1, duration: 0.3, ease: "power2.out" });
+           });
+        });
     }
 
-    animate();
-
-    // --- Responsivo (THREE.js) ---
-    window.addEventListener("resize", () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    });
   });
 </script>

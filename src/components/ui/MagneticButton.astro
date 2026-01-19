@@ -1,0 +1,67 @@
+---
+interface Props {
+  href?: string;
+  class?: string;
+  target?: string;
+}
+
+const { href, class: className, target } = Astro.props;
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  href={href}
+  target={target}
+  class={`magnetic-btn inline-block relative ${className}`}
+>
+  <span class="magnetic-content inline-block">
+    <slot />
+  </span>
+</Tag>
+
+<script>
+  import { gsap } from "../../animations/core";
+
+  function initMagneticButtons() {
+    const buttons = document.querySelectorAll(".magnetic-btn");
+
+    buttons.forEach((btn: HTMLElement) => {
+      if (btn.dataset.initialized) return;
+      btn.dataset.initialized = "true";
+
+      const content = btn.querySelector(".magnetic-content");
+
+      btn.addEventListener("mousemove", (e: MouseEvent) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(btn, {
+          x: x * 0.3,
+          y: y * 0.3,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+
+        gsap.to(content, {
+          x: x * 0.5, // Move content slightly more for parallax feel
+          y: y * 0.5,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+
+      btn.addEventListener("mouseleave", () => {
+        gsap.to([btn, content], {
+          x: 0,
+          y: 0,
+          duration: 0.8,
+          ease: "elastic.out(1, 0.3)",
+        });
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initMagneticButtons);
+  document.addEventListener("DOMContentLoaded", initMagneticButtons);
+</script>

@@ -1,6 +1,7 @@
 ---
-import "@fontsource-variable/onest";
+import "@fontsource/outfit";
 import Header from "../components/Header.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -18,6 +19,7 @@ const { description, title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/portfolio.svg" />
     <meta name="generator" content={Astro.generator} />
+    <ViewTransitions />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -33,35 +35,34 @@ const { description, title } = Astro.props;
     ></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script> -->
 
+    <script>
+      // Importar configuración de GSAP para asegurar registro global
+      import "../animations/core";
+    </script>
+
     <script type="module">
       import { handleSubmit } from "/src/handlers/contactForm.js";
       import Atropos from "https://cdn.jsdelivr.net/npm/atropos@2/atropos.min.mjs";
 
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener("astro:page-load", () => {
         const form = document.getElementById("contactForm");
         if (form) {
           form.addEventListener("submit", handleSubmit);
         }
-      });
 
-      const myAtropos = Atropos({
-        el: ".my-atropos",
-        activeOffset: 90,
-        shadowScale: 1.05,
-        shadow: true,
-        shadowOffset: 50,
-        // shadowScale: 4,
-        highlight: true,
-
-        onEnter() {
-          // console.log("Enter");
-        },
-        onLeave() {
-          // console.log("Leave");
-        },
-        onRotate(x, y) {
-          // console.log("Rotate", x, y);
-        },
+        // Re-init Atropos on navigation
+        const atropsEl = document.querySelector(".my-atropos");
+        if (atropsEl) {
+          Atropos({
+            el: ".my-atropos",
+            activeOffset: 90,
+            shadowScale: 1.05,
+            shadow: true,
+            shadowOffset: 50,
+            // shadowScale: 4,
+            highlight: true,
+          });
+        }
       });
     </script>
   </head>
@@ -76,7 +77,7 @@ const { description, title } = Astro.props;
     color-scheme: light dark;
   }
   html {
-    font-family: "Onest Variable", system-ui, sans-serif;
+    font-family: "Outfit", system-ui, sans-serif;
     scroll-behavior: smooth;
   }
   body {

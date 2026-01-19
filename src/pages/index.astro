@@ -1,38 +1,209 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 import Badge from "../components/Badge.astro";
 import GitHubIcon from "../icons/GitHub.astro";
 import LinkedInIcon from "../icons/LinkedIn.astro";
 import MailIcon from "../icons/Mail.astro";
-import ContactIcon from "../icons/Contact.astro";
-import SocialPill from "../icons/SocialPill.astro";
-import Experience from "../components/Experience.astro";
-import SectionContainer from "../components/SectionContainer.astro";
-import Luggage from "../icons/Luggage.astro";
-import ExperienceI from "../icons/ExperienceI.astro";
 import Footer from "../components/Footer.astro";
-import ProjectsIcon from "../icons/Projects.astro";
-import Projects from "../components/Projects.astro";
-import Online from "../icons/Online.astro";
-import SkillsIcon from "../icons/Skills.astro";
-import Skills from "../components/Skills.astro";
-import Contact from "../components/Contact.astro";
-import SplineEmbed from "../components/SplineViewer.astro";
+import MagneticButton from "../components/ui/MagneticButton.astro";
+import AnimatedText from "../components/ui/AnimatedText.astro";
+import Skills from "../components/Skills.astro"; // Re-added
+import ScrollWrapper from "../components/ui/ScrollWrapper.astro"; // Re-added
+
+// Images from public folder
+const IMAGE_DEFAULT = "/yo_jp.jpeg";
+const IMAGE_HOVER = "/yo_jp_i.png";
 ---
 
 <Layout
-  title="Portfolio Joan - Desarrollador Web"
-  description="Hola! Soy Joan Pastillo, un apasionado desarrollador full stack con +5 meses de experiencia creando soluciones digitales robustas y escalables. Con un fuerte enfoque en la calidad y la innovación, me especializo en llevar ideas desde el concepto hasta la implementación final, asegurando que cada proyecto no solo cumpla, sino que supere las expectativas."
+  title="Joan Pastillo | Portfolio"
+  description="Desarrollador Full Stack. Ibarra, Ecuador."
 >
-  <!-- <main class="px-10"> -->
-  <main>
-    <!-- Imagen -->
-    <SplineEmbed />
-    <div class="px-10">
+  <main
+    class="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 pt-20 md:pt-0 bg-black selection:bg-white selection:text-black overflow-hidden"
+  >
+    <!-- Ultra Minimal Split Layout -->
+    <div
+      class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center z-10"
+    >
+      <!-- LEFT: Text Content -->
+      <div class="flex flex-col gap-8">
+        <div class="opacity-0 animate-in" style={{ animationDelay: "0.2s" }}>
+          <Badge text="Disponible para trabajar" class="mb-6" />
+        </div>
 
+        <div class="space-y-2">
+          <h1
+            class="text-[clamp(3.5rem,8vw,6.5rem)] font-bold tracking-tighter text-white leading-[0.9] opacity-0 animate-in"
+            style={{ animationDelay: "0.4s" }}
+          >
+            Joan<br />Pastillo.
+          </h1>
+          <p
+            class="text-xl md:text-2xl text-zinc-400 font-medium opacity-0 animate-in"
+            style={{ animationDelay: "0.6s" }}
+          >
+            Ibarra, Ecuador
+          </p>
+        </div>
+
+        <div
+          class="max-w-md opacity-0 animate-in"
+          style={{ animationDelay: "0.8s" }}
+        >
+          <p class="text-zinc-500 text-lg leading-relaxed text-pretty">
+            Desarrollador Full Stack apasionado por crear experiencias digitales
+            robustas y escalables con un enfoque en la innovación y el detalle.
+          </p>
+        </div>
+
+        <!-- Social / Contact -->
+        <div
+          class="flex flex-wrap gap-6 items-center mt-4 opacity-0 animate-in"
+          style={{ animationDelay: "1s" }}
+        >
+          <MagneticButton>
+            <a
+              href="mailto:jeipige@gmail.com"
+              class="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-zinc-200 transition-colors"
+            >
+              Contáctame
+            </a>
+          </MagneticButton>
+
+          <div class="flex gap-4">
+            <a
+              href="https://github.com/2k12"
+              target="_blank"
+              class="text-zinc-500 hover:text-white transition-colors"
+            >
+              <GitHubIcon class="w-6 h-6" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/joan-francisco-pastillo-donoso-7823272a1"
+              target="_blank"
+              class="text-zinc-500 hover:text-white transition-colors"
+            >
+              <LinkedInIcon class="w-6 h-6" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Image (Hover Swap) -->
+      <div
+        class="relative flex justify-center lg:justify-end opacity-0 animate-in"
+        style={{ animationDelay: "0.6s" }}
+      >
+        <!-- Image Container -->
+        <div
+          class="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[600px] overflow-hidden rounded-sm grayscale transition-all duration-700 group cursor-none"
+        >
+          <!-- Default Image -->
+          <img
+            src={IMAGE_DEFAULT}
+            alt="Joan Pastillo Profile"
+            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+          />
+
+          <!-- Hover Image -->
+          <img
+            src={IMAGE_HOVER}
+            alt="Joan Pastillo Profile Alt"
+            class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-transform"
+          />
+
+          <!-- Corner Accents (Design) -->
+          <div
+            class="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/30"
+          >
+          </div>
+          <div
+            class="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/30"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mouse Custom Cursor -->
+    <div
+      id="cursor-dot"
+      class="fixed w-3 h-3 bg-white/80 backdrop-blur-md rounded-full pointer-events-none mix-blend-exclusion z-50 top-0 left-0 hidden md:block"
+    >
     </div>
   </main>
+
+  <section class="py-32 bg-zinc-950 border-t border-white/5 relative z-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <ScrollWrapper animation="fade">
+        <div class="mb-16">
+          <h3
+            class="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight"
+          >
+            Tecnologías.
+          </h3>
+          <p class="text-zinc-500 max-w-xl text-lg">
+            Herramientas y frameworks que utilizo para dar vida a mis ideas.
+          </p>
+        </div>
+        <Skills />
+      </ScrollWrapper>
+    </div>
+  </section>
+
+  <Footer />
 </Layout>
 
-<!-- <Footer /> -->
+<style>
+  /* Simple Fade In Animation CSS-only for lightweight load */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-in {
+    animation: fadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+</style>
+
+<script>
+  import { gsap, ScrollTrigger } from "../animations/core";
+  // Plugins registered in core, but explicit registration here doesn't hurt if needed for specific logic:
+  // gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("astro:page-load", () => {
+    // Mouse Follower
+    const cursor = document.getElementById("cursor-dot");
+    let mouseX = 0,
+      mouseY = 0;
+    let cursorX = 0,
+      cursorY = 0;
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    gsap.ticker.add(() => {
+      // Smooth Lerp
+      const dt = 1.0 - Math.pow(1.0 - 0.2, gsap.ticker.deltaRatio());
+      cursorX += (mouseX - cursorX) * dt;
+      cursorY += (mouseY - cursorY) * dt;
+      if (cursor) {
+        gsap.set(cursor, {
+          x: cursorX,
+          y: cursorY,
+          xPercent: -50,
+          yPercent: -50,
+        });
+      }
+    });
+  });
+</script>
