@@ -143,21 +143,26 @@ const ACTIVITIES = [
         );
 
         // Efecto Parallax en la imagen interna
+        // Efecto Parallax en la imagen interna (Solo Desktop)
         const img = item.querySelector("img");
         if (img) {
-          gsap.fromTo(img,
-            { yPercent: -15 },
-            {
-              yPercent: 15,
-              ease: "none",
-              scrollTrigger: {
-                trigger: item,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-              }
+          ScrollTrigger.matchMedia({
+            "(min-width: 768px)": function() {
+              gsap.fromTo(img,
+                { yPercent: -15 },
+                {
+                  yPercent: 15,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: item,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                  }
+                }
+              );
             }
-          );
+          });
         }
     });
 
