@@ -50,14 +50,14 @@ const ALL_CATEGORIES = [
 <div class="skills-wrapper flex flex-col gap-12 w-full py-10 user-select-none">
     
     {ALL_CATEGORIES.map((category, catIndex) => (
-        <div class="w-full relative overflow-hidden">
-            <h4 class="text-sm uppercase tracking-widest text-zinc-500 mb-6 font-mono px-4">
+        <div class="w-full relative overflow-x-auto md:overflow-hidden pb-4 md:pb-0 snap-x snap-mandatory">
+            <h4 class="text-sm uppercase tracking-widest text-zinc-500 mb-6 font-mono px-4 sticky left-0">
                 {category.title}
             </h4>
             
-            <!-- Gradient Masks -->
-            <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none"></div>
+            <!-- Gradient Masks (Desktop Only) -->
+            <div class="hidden md:block absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none"></div>
+            <div class="hidden md:block absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none"></div>
 
             <div class="skills-track flex items-center gap-4 w-max cursor-grab active:cursor-grabbing" data-speed={category.speed}>
                 {/* Render multiple times for loop */}
@@ -86,35 +86,46 @@ const ALL_CATEGORIES = [
     const tracks = document.querySelectorAll(".skills-track");
     
     tracks.forEach((track, i) => {
+        // Mobile: Native scroll, no GSAP
+        if (window.innerWidth < 768) return;
+
         const items = track.querySelectorAll(".skill-item"); // items inside this track
-        const speed = parseFloat((track as HTMLElement).dataset.speed || "0.5");
+        let baseSpeed = parseFloat((track as HTMLElement).dataset.speed || "0.5");
+        
         const direction = 1; // Always consistent direction
         // Create horizontal loop for EACH row
         const loop = horizontalLoop(items, {
             paused: false,
             repeat: -1,
-            speed: speed, 
+            speed: baseSpeed, 
             startPadding: 0,
             paddingRight: 16, // gap-4 is 1rem = 16px
             reversed: false, 
             snap: false,
         });
 
-        // --- Interaction ---
-        Observer.create({
-            onChangeY: (self) => {
-                const velocity = self.velocityY * 0.005;
-                gsap.to(loop, {
-                timeScale: (1 + Math.abs(velocity)),
-                duration: 0.5,
-                ease: "power1.out",
-                overwrite: true,
-                onComplete: () => {
-                   gsap.to(loop, { timeScale: 1, duration: 2, ease: "power2.inOut" });
-                },
-                });
-            },
-        });
+        // --- Interaction (Desktop Only) ---
+        if (window.innerWidth >= 768) {
+          Observer.create({
+              onChangeY: (self) => {
+                  // "Best Physics": Inertial Drag effect
+                  // Scrolling down (positive velocity) -> Accelerates forward
+                  // Scrolling up (negative velocity) -> Reverses/Drags backward
+                  const velocity = self.velocityY * 0.02; 
+                  
+                  gsap.to(loop, {
+                    timeScale: 1 + velocity, // 1 is base speed. Velocity adds/subtracts.
+                    duration: 0.8,
+                    ease: "power3.out",
+                    overwrite: true,
+                    onComplete: () => {
+                       // Smoothly return to natural forward speed
+                       gsap.to(loop, { timeScale: 1, duration: 1.5, ease: "elastic.out(1, 0.3)" });
+                    },
+                  });
+              },
+          });
+        }
 
         track.addEventListener("mouseenter", () => {
              gsap.to(loop, { timeScale: 0.2, duration: 0.5 });
