@@ -34,10 +34,10 @@ const IMAGE_HOVER = "/yo_jp_i.png";
 
         <div class="space-y-2">
           <h1
-            class="text-[clamp(3.5rem,8vw,6.5rem)] font-bold tracking-tighter text-white leading-[0.9] opacity-0 animate-in"
-            style={{ animationDelay: "0.4s" }}
+            class="text-[clamp(3.5rem,8vw,6.5rem)] font-bold tracking-tighter text-white leading-[0.9]"
           >
-            Joan<br />Pastillo.
+            <span class="scramble-text inline-block opacity-0">Joan</span><br />
+            <span class="scramble-text inline-block opacity-0">Pastillo.</span>
           </h1>
           <p
             class="text-xl md:text-2xl text-zinc-400 font-medium opacity-0 animate-in"
@@ -204,6 +204,45 @@ const IMAGE_HOVER = "/yo_jp_i.png";
           yPercent: -50,
         });
       }
+    });
+
+    // --- Scramble Text Effect ---
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+    const scrambleElements = document.querySelectorAll(".scramble-text");
+
+    scrambleElements.forEach((element) => {
+      const el = element as HTMLElement;
+      const originalText = el.innerText;
+      const duration = 1.5;
+
+      // Initial state
+      gsap.set(el, { opacity: 1 });
+
+      const tl = gsap.timeline();
+
+      tl.to(el, {
+        duration: duration,
+        ease: "power2.out",
+        onUpdate: function () {
+          const progress = this.progress();
+          const length = originalText.length;
+          const scrambledLength = Math.floor(length * progress);
+
+          let newText = "";
+          for (let i = 0; i < length; i++) {
+            if (i < scrambledLength) {
+              newText += originalText[i];
+            } else {
+              newText += chars[Math.floor(Math.random() * chars.length)];
+            }
+          }
+          el.innerText = newText;
+        },
+        onComplete: () => {
+          el.innerText = originalText;
+        },
+      });
     });
   });
 </script>
